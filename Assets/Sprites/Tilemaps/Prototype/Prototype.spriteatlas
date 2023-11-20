@@ -45,11 +45,12 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
-    - {fileID: 2800000, guid: 543f2d51996e0fc4d9aaa98b1811edbd, type: 3}
     - {fileID: 2800000, guid: c4201bd69eb51534a824731f9d870492, type: 3}
     - {fileID: 2800000, guid: 5d7b721e5ecbe774fa79db567f1d1d9a, type: 3}
     - {fileID: 2800000, guid: 2bad3b2fce291c446906f18ab14d3fa2, type: 3}
     - {fileID: 2800000, guid: a3cb81acaff01474faeff6173359d055, type: 3}
+    - {fileID: 2800000, guid: 543f2d51996e0fc4d9aaa98b1811edbd, type: 3}
+    - {fileID: 2800000, guid: 74c7ecfc3d2f09a47a681262ee50969b, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -68,6 +69,15 @@ SpriteAtlas:
   - {fileID: -1351452427, guid: a3cb81acaff01474faeff6173359d055, type: 3}
   - {fileID: 445555575, guid: a3cb81acaff01474faeff6173359d055, type: 3}
   - {fileID: -820524280, guid: a3cb81acaff01474faeff6173359d055, type: 3}
+  - {fileID: 1850762826, guid: 74c7ecfc3d2f09a47a681262ee50969b, type: 3}
+  - {fileID: 1063984108, guid: 74c7ecfc3d2f09a47a681262ee50969b, type: 3}
+  - {fileID: 1779057919, guid: 74c7ecfc3d2f09a47a681262ee50969b, type: 3}
+  - {fileID: -1593011268, guid: 74c7ecfc3d2f09a47a681262ee50969b, type: 3}
+  - {fileID: -1678190711, guid: 74c7ecfc3d2f09a47a681262ee50969b, type: 3}
+  - {fileID: 753874406, guid: 74c7ecfc3d2f09a47a681262ee50969b, type: 3}
+  - {fileID: -504898730, guid: 74c7ecfc3d2f09a47a681262ee50969b, type: 3}
+  - {fileID: -1153917943, guid: 74c7ecfc3d2f09a47a681262ee50969b, type: 3}
+  - {fileID: 613469981, guid: 74c7ecfc3d2f09a47a681262ee50969b, type: 3}
   - {fileID: 550428993, guid: 5d7b721e5ecbe774fa79db567f1d1d9a, type: 3}
   - {fileID: 1600289274, guid: 5d7b721e5ecbe774fa79db567f1d1d9a, type: 3}
   - {fileID: 2056885890, guid: 5d7b721e5ecbe774fa79db567f1d1d9a, type: 3}
@@ -116,6 +126,15 @@ SpriteAtlas:
   - Prototype Stair Corners_2
   - Prototype Stair Corners_1
   - Prototype Stair Corners_0
+  - Prototype Lava_6
+  - Prototype Lava_7
+  - Prototype Lava_4
+  - Prototype Lava_5
+  - Prototype Lava_2
+  - Prototype Lava_3
+  - Prototype Lava_0
+  - Prototype Lava_1
+  - Prototype Lava_8
   - Prototype Colour Walls_3
   - Prototype Colour Walls_2
   - Prototype Colour Walls_1

@@ -2,16 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelFinishDoor : MonoBehaviour
 {
+    public string nextSceneName;
+    public bool finalLevel = false;
+    public GameObject playtestCompleteUI;
+    
     private List<Transform> players = new List<Transform>();
     private bool levelComplete = false;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (!finalLevel)
+        {
+            playtestCompleteUI = null;
+        }
     }
 
     // Update is called once per frame
@@ -41,7 +49,15 @@ public class LevelFinishDoor : MonoBehaviour
 
     private void LevelComplete()
     {
-        levelComplete = true;
-        SceneManager.LoadScene("Tutorial_1");
+        if (!finalLevel)
+        {
+            levelComplete = true;
+            SceneManager.LoadScene(nextSceneName);
+        }
+        else
+        {
+            playtestCompleteUI.SetActive(true);
+            Time.timeScale = 0;
+        }
     }
 }

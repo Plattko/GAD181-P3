@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
     // Swap variables
     private float swapCooldown = 1f;
+    public bool canSwap = true;
 
     // Player-specific variables
     private enum PlayerType
@@ -195,7 +196,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnSwapPosition(InputAction.CallbackContext context)
     {
-        if (context.performed && Time.time > PlayerManager.nextSwapAllowed)
+        if (context.performed && Time.time > PlayerManager.nextSwapAllowed && canSwap)
         {
             PlayerManager.nextSwapAllowed = Time.time + swapCooldown;
             
