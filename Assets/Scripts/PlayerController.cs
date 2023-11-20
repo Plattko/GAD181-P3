@@ -21,13 +21,16 @@ public class PlayerController : MonoBehaviour
     private float frictionAmount = 0.25f;
 
     // Jump variables
-    private float jumpPower = 8f;
+    [SerializeField] private float jumpPower = 8f;
     private float coyoteTime = 0.15f;
     private float coyoteTimeCounter;
     private float gravityScale = 1f;
     private float gravityFallMultiplier = 1.9f;
 
     private bool doubleJumpUsed = false;
+
+    // Swap variables
+    private float swapCooldown = 1f;
 
     // Player-specific variables
     private enum PlayerType
@@ -37,13 +40,17 @@ public class PlayerController : MonoBehaviour
     }
     [SerializeField] private PlayerType playerType;
     [SerializeField] private float doubleJumpPower = 10f;
-    
+
+    [SerializeField] private float p1ReducedAirSpeed = 4f;
+    private float regSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         groundCheck = transform.GetChild(1).gameObject.GetComponent<Transform>();
         groundLayer = 1 << layerIndex;
+        regSpeed = moveSpeed;
     }
 
     // Update is called once per frame
@@ -53,10 +60,25 @@ public class PlayerController : MonoBehaviour
         {
             doubleJumpUsed = false;
             coyoteTimeCounter = coyoteTime;
+
         }
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
+        }
+
+        switch (playerType)
+        {
+            case PlayerType.Player1:
+                if (doubleJumpUsed && !IsGrounded())
+                {
+                    moveSpeed = p1ReducedAirSpeed;
+                }
+                else if (IsGrounded())
+                {
+                    moveSpeed = regSpeed;
+                }
+                break;
         }
     }
 
@@ -173,8 +195,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnSwapPosition(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && Time.time > PlayerManager.nextSwapAllowed)
         {
+            PlayerManager.nextSwapAllowed = Time.time + swapCooldown;
+            
             Vector2 thisPosition = transform.position;
             Vector2 otherPosition = otherPlayer.position;
 

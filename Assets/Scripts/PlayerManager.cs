@@ -8,6 +8,8 @@ public class PlayerManager : MonoBehaviour
 {
     public PlayerInput player1;
     public PlayerInput player2;
+
+    public static float nextSwapAllowed;
     
     // Start is called before the first frame update
     void Start()
