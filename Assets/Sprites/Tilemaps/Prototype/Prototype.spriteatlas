@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Prototype
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+    - {fileID: 2800000, guid: 543f2d51996e0fc4d9aaa98b1811edbd, type: 3}
+    - {fileID: 2800000, guid: c4201bd69eb51534a824731f9d870492, type: 3}
+    - {fileID: 2800000, guid: 5d7b721e5ecbe774fa79db567f1d1d9a, type: 3}
+    - {fileID: 2800000, guid: 2bad3b2fce291c446906f18ab14d3fa2, type: 3}
+    - {fileID: 2800000, guid: a3cb81acaff01474faeff6173359d055, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 543f2d51996e0fc4d9aaa98b1811edbd, type: 3}
+  - {fileID: 1323025830, guid: c4201bd69eb51534a824731f9d870492, type: 3}
+  - {fileID: -2053616811, guid: c4201bd69eb51534a824731f9d870492, type: 3}
+  - {fileID: -1789868832, guid: c4201bd69eb51534a824731f9d870492, type: 3}
+  - {fileID: -1641892915, guid: c4201bd69eb51534a824731f9d870492, type: 3}
+  - {fileID: -6844769, guid: c4201bd69eb51534a824731f9d870492, type: 3}
+  - {fileID: 1986647948, guid: c4201bd69eb51534a824731f9d870492, type: 3}
+  - {fileID: -420920463, guid: c4201bd69eb51534a824731f9d870492, type: 3}
+  - {fileID: 106656075, guid: c4201bd69eb51534a824731f9d870492, type: 3}
+  - {fileID: 653170867, guid: a3cb81acaff01474faeff6173359d055, type: 3}
+  - {fileID: -1351452427, guid: a3cb81acaff01474faeff6173359d055, type: 3}
+  - {fileID: 445555575, guid: a3cb81acaff01474faeff6173359d055, type: 3}
+  - {fileID: -820524280, guid: a3cb81acaff01474faeff6173359d055, type: 3}
+  - {fileID: 550428993, guid: 5d7b721e5ecbe774fa79db567f1d1d9a, type: 3}
+  - {fileID: 1600289274, guid: 5d7b721e5ecbe774fa79db567f1d1d9a, type: 3}
+  - {fileID: 2056885890, guid: 5d7b721e5ecbe774fa79db567f1d1d9a, type: 3}
+  - {fileID: 1770601740, guid: 5d7b721e5ecbe774fa79db567f1d1d9a, type: 3}
+  - {fileID: -1376124801, guid: 5d7b721e5ecbe774fa79db567f1d1d9a, type: 3}
+  - {fileID: -1836091568, guid: 5d7b721e5ecbe774fa79db567f1d1d9a, type: 3}
+  - {fileID: -1245674243, guid: 5d7b721e5ecbe774fa79db567f1d1d9a, type: 3}
+  - {fileID: -531772632, guid: 5d7b721e5ecbe774fa79db567f1d1d9a, type: 3}
+  - {fileID: 1494193457, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: 253762965, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: -1691953681, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: -2145777929, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: -195970373, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: -955646041, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: 1293579051, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: 1063229544, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: 682786372, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: 1483236401, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: 2099042123, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: 1444505443, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: 86088863, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: -1844843644, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: 184298137, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: 806925797, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: -2040695312, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: -809677838, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: 1413166120, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: 2066144975, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: 199909271, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: -72294090, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: -1327094111, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: -773059213, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: -760987768, guid: d089951e5abdb9242a57f067f18e7939, type: 3}
+  - {fileID: 21300000, guid: 2bad3b2fce291c446906f18ab14d3fa2, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Prototype Background
+  - Prototype Breakable Surfaces_7
+  - Prototype Breakable Surfaces_6
+  - Prototype Breakable Surfaces_5
+  - Prototype Breakable Surfaces_4
+  - Prototype Breakable Surfaces_3
+  - Prototype Breakable Surfaces_2
+  - Prototype Breakable Surfaces_1
+  - Prototype Breakable Surfaces_0
+  - Prototype Stair Corners_3
+  - Prototype Stair Corners_2
+  - Prototype Stair Corners_1
+  - Prototype Stair Corners_0
+  - Prototype Colour Walls_3
+  - Prototype Colour Walls_2
+  - Prototype Colour Walls_1
+  - Prototype Colour Walls_0
+  - Prototype Colour Walls_7
+  - Prototype Colour Walls_6
+  - Prototype Colour Walls_5
+  - Prototype Colour Walls_4
+  - Prototype_20
+  - Prototype_21
+  - Prototype_22
+  - Prototype_23
+  - Prototype_24
+  - Prototype_2
+  - Prototype_3
+  - Prototype_0
+  - Prototype_1
+  - Prototype_6
+  - Prototype_7
+  - Prototype_4
+  - Prototype_5
+  - Prototype_8
+  - Prototype_9
+  - Prototype_19
+  - Prototype_18
+  - Prototype_11
+  - Prototype_10
+  - Prototype_13
+  - Prototype_12
+  - Prototype_15
+  - Prototype_14
+  - Prototype_17
+  - Prototype_16
+  - Prototype Level End Door
+  m_RenderDataMap: {}
+  m_Tag: Prototype
+  m_IsVariant: 0
