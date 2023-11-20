@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private float gravityScale = 1f;
     private float gravityFallMultiplier = 1.9f;
 
-    private bool doubleJumpUsed = false;
+    public bool doubleJumpUsed { get; private set; } = false;
 
     // Swap variables
     private float swapCooldown = 1f;
