@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private int layerIndex = 6;
     private LayerMask groundLayer;
     public Transform otherPlayer;
+    public Transform particleManager;
 
     // Move variables
     private float horizontalInput;
@@ -21,6 +22,8 @@ public class PlayerController : MonoBehaviour
     private float frictionAmount = 0.25f;
 
     // Jump variables
+    [SerializeField] private ParticleSystem doubleJumpParticles;
+    
     [SerializeField] private float jumpPower = 8f;
     private float coyoteTime = 0.15f;
     private float coyoteTimeCounter;
@@ -50,6 +53,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         groundCheck = transform.GetChild(1).gameObject.GetComponent<Transform>();
+
         groundLayer = 1 << layerIndex;
         regSpeed = moveSpeed;
     }
@@ -181,6 +185,9 @@ public class PlayerController : MonoBehaviour
                         }
                         break;
                 }
+
+                particleManager.GetComponent<ParticleManager>().PlayDoubleJumpParticles(doubleJumpParticles, transform);
+
                 Debug.Log("Executed second jump.");
             }
         }
@@ -205,6 +212,8 @@ public class PlayerController : MonoBehaviour
 
             transform.position = otherPosition;
             otherPlayer.position = thisPosition;
+
+            particleManager.GetComponent<ParticleManager>().PlaySwapParticles();
         }
     }
 }
