@@ -49,15 +49,21 @@ public class LevelFinishDoor : MonoBehaviour
 
     private void LevelComplete()
     {
+        foreach (Transform player in players)
+        {
+            GameObject playerGO = player.gameObject;
+            playerGO.GetComponent<Recorder>().OnGoalReached();
+        }
+        
         if (!finalLevel)
         {
             levelComplete = true;
-            SceneManager.LoadScene(nextSceneName);
+            //SceneManager.LoadScene(nextSceneName);
         }
         else
         {
-            playtestCompleteUI.SetActive(true);
-            Time.timeScale = 0;
+            //playtestCompleteUI.SetActive(true);
+            //Time.timeScale = 0;
         }
     }
 }
