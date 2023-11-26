@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private float frictionAmount = 0.25f;
 
     // Jump variables
+    [SerializeField] private ParticleSystem jumpParticles;
     [SerializeField] private List<ParticleSystem> doubleJumpParticles = new List<ParticleSystem>();
     
     [SerializeField] private float jumpPower = 8f;
@@ -143,6 +144,9 @@ public class PlayerController : MonoBehaviour
         {
             if (coyoteTimeCounter > 0f)
             {
+                // Jump particles
+                particleManager.GetComponent<ParticleManager>().PlayJumpParticles(jumpParticles, groundCheck);
+
                 rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
                 Debug.Log("Executed first jump.");
             }
@@ -186,6 +190,7 @@ public class PlayerController : MonoBehaviour
                         break;
                 }
 
+                // Double jump particles
                 particleManager.GetComponent<ParticleManager>().PlayDoubleJumpParticles(doubleJumpParticles, transform);
 
                 Debug.Log("Executed second jump.");
