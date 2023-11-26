@@ -143,6 +143,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7485899866043800896, guid: 7add0310a20cb32419cca2ee104bafed, type: 3}
+      propertyPath: m_Size.x
+      value: 0.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485899866043800896, guid: 7add0310a20cb32419cca2ee104bafed, type: 3}
+      propertyPath: m_Size.y
+      value: 1.22
+      objectReference: {fileID: 0}
     - target: {fileID: 7485899866043800897, guid: 7add0310a20cb32419cca2ee104bafed, type: 3}
       propertyPath: m_DefaultControlScheme
       value: Keyboard_P2
@@ -1685,6 +1693,14 @@ PrefabInstance:
     - target: {fileID: 7485899865776625696, guid: 7add0310a20cb32419cca2ee104bafed, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485899866043800896, guid: 7add0310a20cb32419cca2ee104bafed, type: 3}
+      propertyPath: m_Size.x
+      value: 0.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485899866043800896, guid: 7add0310a20cb32419cca2ee104bafed, type: 3}
+      propertyPath: m_Size.y
+      value: 1.22
       objectReference: {fileID: 0}
     - target: {fileID: 7485899866043800898, guid: 7add0310a20cb32419cca2ee104bafed, type: 3}
       propertyPath: jumpPower
