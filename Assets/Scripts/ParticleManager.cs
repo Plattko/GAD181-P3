@@ -22,20 +22,20 @@ public class ParticleManager : MonoBehaviour
         
     }
 
-    public void PlayDoubleJumpParticles(ParticleSystem particles, Transform transform)
+    public void PlayDoubleJumpParticles(List<ParticleSystem> particles, Transform transform)
     {
-        particles.Stop();
-        particles.transform.position = transform.position;
-        particles.Play();
+        foreach (ParticleSystem particle in particles)
+        {
+            particle.Stop();
+            particle.transform.position = transform.position;
+            particle.Play();
+        }
     }
 
     public void PlaySwapParticles()
     {
         p1SwapParticles.Stop();
         p2SwapParticles.Stop();
-
-        //p1SwapParticles.transform.position = p1Transform.position;
-        //p2SwapParticles.transform.position = p2Transform.position;
 
         p1SwapParticles.Play();
         p2SwapParticles.Play();

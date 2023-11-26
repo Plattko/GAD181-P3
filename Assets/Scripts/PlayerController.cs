@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private float frictionAmount = 0.25f;
 
     // Jump variables
-    [SerializeField] private ParticleSystem doubleJumpParticles;
+    [SerializeField] private List<ParticleSystem> doubleJumpParticles = new List<ParticleSystem>();
     
     [SerializeField] private float jumpPower = 8f;
     private float coyoteTime = 0.15f;
