@@ -454,7 +454,7 @@ Transform:
   m_GameObject: {fileID: 604195857}
   serializedVersion: 2
   m_LocalRotation: {x: -1e-45, y: 0.08248065, z: 0, w: 0.9965927}
-  m_LocalPosition: {x: -2.9389615, y: 8.67, z: -17.633749}
+  m_LocalPosition: {x: -2.9389622, y: 8.67, z: -17.633749}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -602,7 +602,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 15.658634
+  orthographic size: 15.651744
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -627,7 +627,7 @@ Transform:
   m_GameObject: {fileID: 631563016}
   serializedVersion: 2
   m_LocalRotation: {x: -1e-45, y: 0.08248065, z: 0, w: 0.9965927}
-  m_LocalPosition: {x: -2.9389615, y: 8.67, z: -17.633749}
+  m_LocalPosition: {x: -2.9389622, y: 8.67, z: -17.633749}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1220,6 +1220,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eced26fbcdce8414ab21b9d8e33607a8, type: 3}
+--- !u!1 &1210948948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1210948949}
+  m_Layer: 0
+  m_Name: Replay Camera Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1210948949
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210948948}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 7.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1216839962
 GameObject:
   m_ObjectHideFlags: 0
@@ -9111,6 +9142,22 @@ PrefabInstance:
       propertyPath: nextSceneName
       value: Tutorial_4
       objectReference: {fileID: 0}
+    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: replayOrthoSize
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: cinemachineCamera
+      value: 
+      objectReference: {fileID: 604195858}
+    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: playerCameraTransform
+      value: 
+      objectReference: {fileID: 1373579130}
+    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: replayCameraTransform
+      value: 
+      objectReference: {fileID: 1210948949}
     - target: {fileID: 2561715066176543034, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
       propertyPath: m_Name
       value: Level Finish Door
@@ -9216,6 +9263,7 @@ SceneRoots:
   - {fileID: 631563021}
   - {fileID: 1373579130}
   - {fileID: 930649804}
+  - {fileID: 1210948949}
   - {fileID: 1506479521}
   - {fileID: 969301962}
   - {fileID: 1216839963}

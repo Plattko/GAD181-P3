@@ -458,7 +458,7 @@ Transform:
   m_GameObject: {fileID: 48109745}
   serializedVersion: 2
   m_LocalRotation: {x: -1e-45, y: 0.08248065, z: 0, w: 0.9965927}
-  m_LocalPosition: {x: -0.9930156, y: 0.6700001, z: -14.958071}
+  m_LocalPosition: {x: -0.99301547, y: 0.6700001, z: -14.958071}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -673,7 +673,7 @@ Transform:
   m_GameObject: {fileID: 142183719}
   serializedVersion: 2
   m_LocalRotation: {x: -1e-45, y: 0.08248065, z: 0, w: 0.9965927}
-  m_LocalPosition: {x: -0.9930156, y: 0.6700001, z: -14.958071}
+  m_LocalPosition: {x: -0.99301547, y: 0.6700001, z: -14.958071}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3947,6 +3947,22 @@ PrefabInstance:
       propertyPath: nextSceneName
       value: Level_1
       objectReference: {fileID: 0}
+    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: replayOrthoSize
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: cinemachineCamera
+      value: 
+      objectReference: {fileID: 142183720}
+    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: playerCameraTransform
+      value: 
+      objectReference: {fileID: 1808220623}
+    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: replayCameraTransform
+      value: 
+      objectReference: {fileID: 1401890385}
     - target: {fileID: 2561715066176543034, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
       propertyPath: m_Name
       value: Level Finish Door
@@ -11867,6 +11883,37 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1401890384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1401890385}
+  m_Layer: 0
+  m_Name: Replay Camera Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1401890385
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401890384}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 9.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1440150603
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12594,6 +12641,7 @@ SceneRoots:
   - {fileID: 48109750}
   - {fileID: 1808220623}
   - {fileID: 2089719767}
+  - {fileID: 1401890385}
   - {fileID: 2116976742}
   - {fileID: 1691464753}
   - {fileID: 73562001}
