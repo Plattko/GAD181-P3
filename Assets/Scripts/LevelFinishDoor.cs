@@ -50,6 +50,17 @@ public class LevelFinishDoor : MonoBehaviour
             cinemachineCamera.m_Lens.OrthographicSize = replayOrthoSize;
             cinemachineCamera.Follow = replayCameraTransform;
             cinemachineCamera.LookAt = replayCameraTransform;
+
+            if (!finalLevel && Input.GetKeyDown(KeyCode.Return))
+            {
+                SceneManager.LoadScene(nextSceneName);
+            }
+            else if (finalLevel && Input.GetKeyDown(KeyCode.Return))
+            {
+                playtestCompleteUI.SetActive(true);
+                Time.timeScale = 0;
+            }
+
         }
     }
 
@@ -70,17 +81,7 @@ public class LevelFinishDoor : MonoBehaviour
     }
 
     private void LevelComplete()
-    {        
-        if (!finalLevel)
-        {
-            levelComplete = true;
-            //SceneManager.LoadScene(nextSceneName);
-        }
-        else
-        {
-            levelComplete = true;
-            //playtestCompleteUI.SetActive(true);
-            //Time.timeScale = 0;
-        }
+    {
+        levelComplete = true;
     }
 }
