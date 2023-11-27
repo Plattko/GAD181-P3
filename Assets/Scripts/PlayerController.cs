@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private int layerIndex = 6;
     private LayerMask groundLayer;
     public Transform otherPlayer;
+    public Transform particleManager;
 
     // Move variables
     private float horizontalInput;
@@ -21,6 +22,9 @@ public class PlayerController : MonoBehaviour
     private float frictionAmount = 0.25f;
 
     // Jump variables
+    [SerializeField] private ParticleSystem jumpParticles;
+    [SerializeField] private List<ParticleSystem> doubleJumpParticles = new List<ParticleSystem>();
+    
     [SerializeField] private float jumpPower = 8f;
     private float coyoteTime = 0.15f;
     private float coyoteTimeCounter;
@@ -52,6 +56,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         groundCheck = transform.GetChild(1).gameObject.GetComponent<Transform>();
+
         groundLayer = 1 << layerIndex;
         regSpeed = moveSpeed;
     }
@@ -143,6 +148,9 @@ public class PlayerController : MonoBehaviour
         {
             if (coyoteTimeCounter > 0f)
             {
+                // Jump particles
+                particleManager.GetComponent<ParticleManager>().PlayJumpParticles(jumpParticles, groundCheck);
+
                 rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             }
             else if (!doubleJumpUsed)
@@ -189,6 +197,11 @@ public class PlayerController : MonoBehaviour
                         }
                         break;
                 }
+
+                // Double jump particles
+                particleManager.GetComponent<ParticleManager>().PlayDoubleJumpParticles(doubleJumpParticles, transform);
+
+                Debug.Log("Executed second jump.");
             }
         }
         
@@ -211,6 +224,8 @@ public class PlayerController : MonoBehaviour
 
             transform.position = otherPosition;
             otherPlayer.position = thisPosition;
+
+            particleManager.GetComponent<ParticleManager>().PlaySwapParticles();
         }
     }
 }
