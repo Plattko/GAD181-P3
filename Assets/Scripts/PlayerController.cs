@@ -42,7 +42,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerType playerType;
     [SerializeField] private float doubleJumpPower = 10f;
 
-    [SerializeField] private float p1ReducedAirSpeed = 4f;
+    //private float p1ReducedJumpSpeed = 6f;
+    private float p1ReducedDblJumpSpeed = 4f;
     private float regSpeed;
 
     // Start is called before the first frame update
@@ -61,7 +62,6 @@ public class PlayerController : MonoBehaviour
         {
             doubleJumpUsed = false;
             coyoteTimeCounter = coyoteTime;
-
         }
         else
         {
@@ -71,9 +71,16 @@ public class PlayerController : MonoBehaviour
         switch (playerType)
         {
             case PlayerType.Player1:
-                if (doubleJumpUsed && !IsGrounded())
+                if (!IsGrounded())
                 {
-                    moveSpeed = p1ReducedAirSpeed;
+                    if (doubleJumpUsed)
+                    {
+                        moveSpeed = p1ReducedDblJumpSpeed;
+                    }
+                    //else
+                    //{
+                    //    moveSpeed = p1ReducedJumpSpeed;
+                    //}
                 }
                 else if (IsGrounded())
                 {
@@ -140,11 +147,9 @@ public class PlayerController : MonoBehaviour
             if (coyoteTimeCounter > 0f)
             {
                 rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-                Debug.Log("Executed first jump.");
             }
             else if (!doubleJumpUsed)
             {
-                Debug.Log("Called second jump.");
                 doubleJumpUsed = true;
 
                 // Cancel vertical velocity
@@ -181,7 +186,6 @@ public class PlayerController : MonoBehaviour
                         }
                         break;
                 }
-                Debug.Log("Executed second jump.");
             }
         }
         
