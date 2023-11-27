@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         // Record replay data for this frame
-        ReplayData data = new ReplayData(this.transform.position);
+        ReplayData data = new PlayerReplayData(this.transform.position);
         recorder.RecordReplayFrame(data);
     }
 

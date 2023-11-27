@@ -13,8 +13,11 @@ public class Recorder : MonoBehaviour
 
     private bool isDoingReplay = false;
 
+    private bool hasReachedGoal = false;
+
     private void Awake()
     {
+        hasReachedGoal = false;
         recordingQueue = new Queue<ReplayData>();
     }
 
@@ -45,6 +48,13 @@ public class Recorder : MonoBehaviour
 
     private void Update()
     {
+        if (LevelFinishDoor.levelComplete && !hasReachedGoal)
+        {
+            //Debug.Log("Finished");
+            OnGoalReached();
+            hasReachedGoal = true;
+        }
+
         if (!isDoingReplay)
         {
             return;

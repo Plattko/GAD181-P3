@@ -12,7 +12,7 @@ public class LevelFinishDoor : MonoBehaviour
     public GameObject playtestCompleteUI;
     
     private List<Transform> players = new List<Transform>();
-    private bool levelComplete = false;
+    public static bool levelComplete = false;
 
     // Camera
     [SerializeField] CinemachineVirtualCamera cinemachineCamera;
@@ -70,13 +70,7 @@ public class LevelFinishDoor : MonoBehaviour
     }
 
     private void LevelComplete()
-    {
-        foreach (Transform player in players)
-        {
-            GameObject playerGO = player.gameObject;
-            playerGO.GetComponent<Recorder>().OnGoalReached();
-        }
-        
+    {        
         if (!finalLevel)
         {
             levelComplete = true;
@@ -84,6 +78,7 @@ public class LevelFinishDoor : MonoBehaviour
         }
         else
         {
+            levelComplete = true;
             //playtestCompleteUI.SetActive(true);
             //Time.timeScale = 0;
         }
