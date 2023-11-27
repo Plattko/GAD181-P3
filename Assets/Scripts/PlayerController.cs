@@ -200,8 +200,6 @@ public class PlayerController : MonoBehaviour
 
                 // Double jump particles
                 particleManager.GetComponent<ParticleManager>().PlayDoubleJumpParticles(doubleJumpParticles, transform);
-
-                Debug.Log("Executed second jump.");
             }
         }
         
