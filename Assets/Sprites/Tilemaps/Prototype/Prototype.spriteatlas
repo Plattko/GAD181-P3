@@ -52,11 +52,20 @@ SpriteAtlas:
     - {fileID: 2800000, guid: a3cb81acaff01474faeff6173359d055, type: 3}
     - {fileID: 2800000, guid: 543f2d51996e0fc4d9aaa98b1811edbd, type: 3}
     - {fileID: 2800000, guid: 74c7ecfc3d2f09a47a681262ee50969b, type: 3}
+    - {fileID: 2800000, guid: 6d60075590e50824a8747ba47ba9e211, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
     packedSpriteRenderDataKeys:
     - 543f2d51996e0fc4d9aaa98b1811edbd: 21300000
+    - 6d60075590e50824a8747ba47ba9e211: -596001721
+    - 6d60075590e50824a8747ba47ba9e211: 524233531
+    - 6d60075590e50824a8747ba47ba9e211: 1342033362
+    - 6d60075590e50824a8747ba47ba9e211: -1783242884
+    - 6d60075590e50824a8747ba47ba9e211: 1511673012
+    - 6d60075590e50824a8747ba47ba9e211: -983846801
+    - 6d60075590e50824a8747ba47ba9e211: -35324221
+    - 6d60075590e50824a8747ba47ba9e211: 194206817
     - c4201bd69eb51534a824731f9d870492: 1323025830
     - c4201bd69eb51534a824731f9d870492: -2053616811
     - c4201bd69eb51534a824731f9d870492: -1789868832
@@ -115,6 +124,14 @@ SpriteAtlas:
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 543f2d51996e0fc4d9aaa98b1811edbd, type: 3}
+  - {fileID: -596001721, guid: 6d60075590e50824a8747ba47ba9e211, type: 3}
+  - {fileID: 524233531, guid: 6d60075590e50824a8747ba47ba9e211, type: 3}
+  - {fileID: 1342033362, guid: 6d60075590e50824a8747ba47ba9e211, type: 3}
+  - {fileID: -1783242884, guid: 6d60075590e50824a8747ba47ba9e211, type: 3}
+  - {fileID: 1511673012, guid: 6d60075590e50824a8747ba47ba9e211, type: 3}
+  - {fileID: -983846801, guid: 6d60075590e50824a8747ba47ba9e211, type: 3}
+  - {fileID: -35324221, guid: 6d60075590e50824a8747ba47ba9e211, type: 3}
+  - {fileID: 194206817, guid: 6d60075590e50824a8747ba47ba9e211, type: 3}
   - {fileID: 1323025830, guid: c4201bd69eb51534a824731f9d870492, type: 3}
   - {fileID: -2053616811, guid: c4201bd69eb51534a824731f9d870492, type: 3}
   - {fileID: -1789868832, guid: c4201bd69eb51534a824731f9d870492, type: 3}
@@ -172,6 +189,14 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 2bad3b2fce291c446906f18ab14d3fa2, type: 3}
   m_PackedSpriteNamesToIndex:
   - Prototype Background
+  - Prototype No-Swap Zone_3
+  - Prototype No-Swap Zone_2
+  - Prototype No-Swap Zone_1
+  - Prototype No-Swap Zone_0
+  - Prototype No-Swap Zone_7
+  - Prototype No-Swap Zone_6
+  - Prototype No-Swap Zone_5
+  - Prototype No-Swap Zone_4
   - Prototype Breakable Surfaces_7
   - Prototype Breakable Surfaces_6
   - Prototype Breakable Surfaces_5
