@@ -35,7 +35,7 @@ public class BreakableSurface : MonoBehaviour
 
     private void LateUpdate()
     {
-        ReplayData data = new BreakableWallReplayData(this.transform.position, sr.color.a);
+        ReplayData data = new BreakableWallReplayData(this.transform.position, sr.color.a, sr.size);
         recorder.RecordReplayFrame(data);
     }
 

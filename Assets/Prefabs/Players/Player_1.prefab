@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 4651474868008511463}
   - component: {fileID: 4808214265749253619}
   - component: {fileID: 8901880134229915288}
+  - component: {fileID: 8355090375451858624}
   m_Layer: 7
   m_Name: Player_1
   m_TagString: Player 1
@@ -249,6 +250,19 @@ MonoBehaviour:
   canSwap: 1
   playerType: 0
   doubleJumpVector: {x: 0, y: 14.5}
+--- !u!114 &8355090375451858624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6157209307345534911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a57998ba371d24db7acd42ea513628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  replayObjectPrefab: {fileID: 5713249994343501554, guid: 8b5ccf5d934d58441a82d7b447732493, type: 3}
 --- !u!1 &7688911777272944186
 GameObject:
   m_ObjectHideFlags: 0

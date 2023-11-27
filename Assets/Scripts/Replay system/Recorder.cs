@@ -38,6 +38,15 @@ public class Recorder : MonoBehaviour
             // Disable player visual
             this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
         }
+        else
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            SpriteRenderer[] spriteRenderers = this.gameObject.GetComponentsInChildren<SpriteRenderer>();
+            foreach (SpriteRenderer sr in spriteRenderers)
+            {
+                sr.enabled = false;
+            }
+        }
         StartReplay();
     }
 

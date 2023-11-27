@@ -16,6 +16,7 @@ public class BreakableWallReplayObject : ReplayObject
         BreakableWallReplayData wallData = (BreakableWallReplayData) data;
 
         this.transform.position = wallData.position;
+        sr.size = wallData.size;
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, wallData.spriteAlpha);
     }
 }

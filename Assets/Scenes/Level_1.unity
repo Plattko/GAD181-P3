@@ -379,6 +379,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &323025079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 323025080}
+  m_Layer: 0
+  m_Name: Replay Camera Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &323025080
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323025079}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 16, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &353490127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -607,7 +638,7 @@ Transform:
   m_GameObject: {fileID: 446462698}
   serializedVersion: 2
   m_LocalRotation: {x: -1e-45, y: 0.08248065, z: 0, w: 0.9965927}
-  m_LocalPosition: {x: -2.749773, y: 0.6700001, z: -16.498613}
+  m_LocalPosition: {x: -2.573286, y: 26.95, z: -15.199693}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -745,9 +776,25 @@ PrefabInstance:
       value: Level_1
       objectReference: {fileID: 0}
     - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: replayOrthoSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: cinemachineCamera
+      value: 
+      objectReference: {fileID: 446462699}
+    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
       propertyPath: playtestCompleteUI
       value: 
       objectReference: {fileID: 1519321048}
+    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: playerCameraTransform
+      value: 
+      objectReference: {fileID: 745838722}
+    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: replayCameraTransform
+      value: 
+      objectReference: {fileID: 323025080}
     - target: {fileID: 2561715066176543034, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
       propertyPath: m_Name
       value: Level Finish Door
@@ -1076,7 +1123,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 10.797193
+  orthographic size: 6.3999996
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1101,7 +1148,7 @@ Transform:
   m_GameObject: {fileID: 622929502}
   serializedVersion: 2
   m_LocalRotation: {x: -1e-45, y: 0.08248065, z: 0, w: 0.9965927}
-  m_LocalPosition: {x: -2.749773, y: 0.6700001, z: -16.498613}
+  m_LocalPosition: {x: -2.573286, y: 26.95, z: -15.199693}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15789,7 +15836,7 @@ Transform:
   m_GameObject: {fileID: 745838720}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.0192308, y: 0.67, z: 0}
+  m_LocalPosition: {x: -1.2867728, y: 27.010082, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16114,11 +16161,11 @@ PrefabInstance:
       objectReference: {fileID: 2104503928}
     - target: {fileID: 2155347787431393562, guid: 88d052e564aa9bb43a2eabfc5eb5ee17, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.5
+      value: 2.45
       objectReference: {fileID: 0}
     - target: {fileID: 2155347787431393562, guid: 88d052e564aa9bb43a2eabfc5eb5ee17, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.67
+      value: 26.83
       objectReference: {fileID: 0}
     - target: {fileID: 2155347787431393562, guid: 88d052e564aa9bb43a2eabfc5eb5ee17, type: 3}
       propertyPath: m_LocalPosition.z
@@ -21090,11 +21137,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5127495080252080392, guid: 6a58117c1c4154045a200d4fdb39cba4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.5
+      value: -2.53
       objectReference: {fileID: 0}
     - target: {fileID: 5127495080252080392, guid: 6a58117c1c4154045a200d4fdb39cba4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.67
+      value: 27.07
       objectReference: {fileID: 0}
     - target: {fileID: 5127495080252080392, guid: 6a58117c1c4154045a200d4fdb39cba4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -21412,6 +21459,7 @@ GameObject:
   - component: {fileID: 1963080988}
   - component: {fileID: 1963080989}
   - component: {fileID: 1963080990}
+  - component: {fileID: 1963080991}
   m_Layer: 0
   m_Name: Lava
   m_TagString: Untagged
@@ -21565,6 +21613,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bde0e64e1948e14988ae149ebc4d718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1963080991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963080985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a57998ba371d24db7acd42ea513628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  replayObjectPrefab: {fileID: 6026190373571135241, guid: e378631d85077924981e8ce740bd26dd, type: 3}
 --- !u!1 &2076755987
 GameObject:
   m_ObjectHideFlags: 0
@@ -21738,6 +21799,7 @@ SceneRoots:
   - {fileID: 622929507}
   - {fileID: 745838722}
   - {fileID: 1379429455}
+  - {fileID: 323025080}
   - {fileID: 1062210123}
   - {fileID: 1360131918}
   - {fileID: 598036264}
