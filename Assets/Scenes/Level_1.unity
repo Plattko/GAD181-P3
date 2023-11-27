@@ -773,7 +773,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
       propertyPath: nextSceneName
-      value: Level_1
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
       propertyPath: replayOrthoSize
@@ -1123,7 +1123,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 10.797193
+  orthographic size: 10.799636
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

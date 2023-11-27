@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 7180733553512076355}
   m_Layer: 8
   m_Name: Player_2_ReplayObject
-  m_TagString: Player 2
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

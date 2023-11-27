@@ -51,7 +51,7 @@ public class LevelFinishDoor : MonoBehaviour
             cinemachineCamera.Follow = replayCameraTransform;
             cinemachineCamera.LookAt = replayCameraTransform;
 
-            if (!finalLevel && Input.GetKeyDown(KeyCode.Return))
+            if (!finalLevel && Input.GetKeyDown(KeyCode.Return) && nextSceneName != null)
             {
                 SceneManager.LoadScene(nextSceneName);
             }
