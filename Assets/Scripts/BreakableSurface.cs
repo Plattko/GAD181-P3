@@ -11,6 +11,16 @@ public class BreakableSurface : MonoBehaviour
     }
     [SerializeField] private SurfaceType surfaceType;
 
+    private SpriteRenderer sr;
+
+    private Recorder recorder;
+
+    private void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+        recorder = GetComponent<Recorder>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +33,12 @@ public class BreakableSurface : MonoBehaviour
         
     }
 
+    private void LateUpdate()
+    {
+        ReplayData data = new BreakableWallReplayData(this.transform.position, sr.color.a);
+        recorder.RecordReplayFrame(data);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("OnTriggerEnter detected.");
@@ -31,14 +47,24 @@ public class BreakableSurface : MonoBehaviour
             Debug.Log("Player 1 and surface type are correct.");
             if (collision.GetComponent<PlayerController>().doubleJumpUsed)
             {
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
+                sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0);
+                foreach (Collider2D col in GetComponents<Collider2D>())
+                {
+                    col.enabled = false;
+                }
             }
         }
         else if (collision.CompareTag("Player 2") && surfaceType == SurfaceType.Wall)
         {
             if (collision.GetComponent<PlayerController>().doubleJumpUsed)
             {
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
+                sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0);
+                foreach (Collider2D col in GetComponents<Collider2D>())
+                {
+                    col.enabled = false;
+                }
             }
         }
     }

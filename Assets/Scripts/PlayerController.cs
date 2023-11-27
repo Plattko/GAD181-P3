@@ -51,6 +51,14 @@ public class PlayerController : MonoBehaviour
     private float p1ReducedDblJumpSpeed = 4f;
     private float regSpeed;
 
+    // Replay system
+    private Recorder recorder;
+
+    private void Awake()
+    {
+        recorder = GetComponent<Recorder>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -94,6 +102,13 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    private void LateUpdate()
+    {
+        // Record replay data for this frame
+        ReplayData data = new PlayerReplayData(this.transform.position);
+        recorder.RecordReplayFrame(data);
     }
 
     private void FixedUpdate()

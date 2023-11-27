@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class LevelFinishDoor : MonoBehaviour
 {
@@ -11,8 +12,22 @@ public class LevelFinishDoor : MonoBehaviour
     public GameObject playtestCompleteUI;
     
     private List<Transform> players = new List<Transform>();
-    private bool levelComplete = false;
-    
+    public static bool levelComplete = false;
+
+    // Camera
+    [SerializeField] CinemachineVirtualCamera cinemachineCamera;
+    [SerializeField] private Transform replayCameraTransform;
+    [SerializeField] private Transform playerCameraTransform;
+    [SerializeField] private float replayOrthoSize;
+
+    private void Awake()
+    {
+        levelComplete = false;
+        cinemachineCamera.m_Lens.OrthographicSize = 5f;
+        cinemachineCamera.Follow = playerCameraTransform;
+        cinemachineCamera.LookAt = playerCameraTransform;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +43,13 @@ public class LevelFinishDoor : MonoBehaviour
         if (players.Count == 2 && !levelComplete)
         {
             LevelComplete();
+        }
+
+        if (levelComplete)
+        {
+            cinemachineCamera.m_Lens.OrthographicSize = replayOrthoSize;
+            cinemachineCamera.Follow = replayCameraTransform;
+            cinemachineCamera.LookAt = replayCameraTransform;
         }
     }
 
@@ -48,16 +70,17 @@ public class LevelFinishDoor : MonoBehaviour
     }
 
     private void LevelComplete()
-    {
+    {        
         if (!finalLevel)
         {
             levelComplete = true;
-            SceneManager.LoadScene(nextSceneName);
+            //SceneManager.LoadScene(nextSceneName);
         }
         else
         {
-            playtestCompleteUI.SetActive(true);
-            Time.timeScale = 0;
+            levelComplete = true;
+            //playtestCompleteUI.SetActive(true);
+            //Time.timeScale = 0;
         }
     }
 }
