@@ -819,6 +819,30 @@ PrefabInstance:
       propertyPath: doubleJumpPower
       value: 14.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7485899866043800898, guid: 7add0310a20cb32419cca2ee104bafed, type: 3}
+      propertyPath: doubleJumpForce.y
+      value: 14.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485899866043800898, guid: 7add0310a20cb32419cca2ee104bafed, type: 3}
+      propertyPath: doubleJumpVector.y
+      value: 14.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485899866043800898, guid: 7add0310a20cb32419cca2ee104bafed, type: 3}
+      propertyPath: doubleJumpForces.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485899866043800898, guid: 7add0310a20cb32419cca2ee104bafed, type: 3}
+      propertyPath: doubleJumpForces.Array.data[0].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485899866043800898, guid: 7add0310a20cb32419cca2ee104bafed, type: 3}
+      propertyPath: doubleJumpForces.Array.data[0].y
+      value: 14.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485899866043800898, guid: 7add0310a20cb32419cca2ee104bafed, type: 3}
+      propertyPath: doubleJumpForces.Array.data[1].y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7485899866043800901, guid: 7add0310a20cb32419cca2ee104bafed, type: 3}
       propertyPath: m_Name
       value: Player_1
@@ -945,7 +969,15 @@ PrefabInstance:
       objectReference: {fileID: 829345869}
     - target: {fileID: 7485899866043800898, guid: 7add0310a20cb32419cca2ee104bafed, type: 3}
       propertyPath: doubleJumpPower
-      value: 14.5
+      value: 14.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485899866043800898, guid: 7add0310a20cb32419cca2ee104bafed, type: 3}
+      propertyPath: doubleJumpVector.x
+      value: 12.80274
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485899866043800898, guid: 7add0310a20cb32419cca2ee104bafed, type: 3}
+      propertyPath: doubleJumpVector.y
+      value: 6.807338
       objectReference: {fileID: 0}
     - target: {fileID: 7485899866043800901, guid: 7add0310a20cb32419cca2ee104bafed, type: 3}
       propertyPath: m_Name

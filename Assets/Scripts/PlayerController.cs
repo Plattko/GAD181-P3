@@ -40,7 +40,8 @@ public class PlayerController : MonoBehaviour
         Player2
     }
     [SerializeField] private PlayerType playerType;
-    [SerializeField] private float doubleJumpPower = 10f;
+    [SerializeField] private Vector2 doubleJumpVector;
+    //[SerializeField] private float doubleJumpPower = 14.5f;
 
     //private float p1ReducedJumpSpeed = 6f;
     private float p1ReducedDblJumpSpeed = 4f;
@@ -92,8 +93,6 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
-
         // Calculate the move direction and the desired velocity
         float targetSpeed = horizontalInput * moveSpeed;
         // Calculate the difference between the current and desired velocity
@@ -130,8 +129,6 @@ public class PlayerController : MonoBehaviour
 
     private bool IsGrounded()
     {
-        //return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
-
         return Physics2D.OverlapBox(new Vector2(groundCheck.position.x, groundCheck.position.y), new Vector2(0.8f, 0.2f), 0f, groundLayer);
     }
 
@@ -159,30 +156,36 @@ public class PlayerController : MonoBehaviour
                 switch (playerType)
                 {
                     case PlayerType.Player1:
-                        //rb.velocity = new Vector2(rb.velocity.x, p1HighJumpPower);
-                        
-                        rb.AddForce(Vector2.up * doubleJumpPower, ForceMode2D.Impulse);
+                        //rb.AddForce(Vector2.up * doubleJumpPower, ForceMode2D.Impulse);
+
+                        rb.AddForce(doubleJumpVector, ForceMode2D.Impulse);
                         break;
 
                     case PlayerType.Player2:
 
-                        Vector2 direction = Vector2.right;
-                        Quaternion rotation = Quaternion.Euler(0, 0, 28);
+                        //Vector2 direction = Vector2.right;
+                        //Quaternion rotation = Quaternion.Euler(0, 0, 28);
 
                         if (Mathf.Abs(horizontalInput) > 0.01f)
                         {
-                            direction = new Vector2(horizontalInput, 0);
-                            rotation = Quaternion.Euler(0, 0, Mathf.Sign(horizontalInput) * 28);
+                            //direction = new Vector2(horizontalInput, 0);
+                            //rotation = Quaternion.Euler(0, 0, Mathf.Sign(horizontalInput) * 28);
 
-                            Vector2 forceDirection = rotation * direction;
-                            rb.AddForce(forceDirection * doubleJumpPower, ForceMode2D.Impulse);
+                            //Vector2 forceDirection = rotation * direction;
+                            //rb.AddForce(forceDirection * doubleJumpPower, ForceMode2D.Impulse);
+
+                            Vector2 directionalVector = new Vector2(doubleJumpVector.x * horizontalInput, doubleJumpVector.y);
+                            rb.AddForce(directionalVector, ForceMode2D.Impulse);
                         }
                         else if (Mathf.Abs(horizontalInput) < 0.01f)
                         {
-                            Vector2 forceDirection = rotation * direction;
-                            float lungeVerticalForce = forceDirection.y * doubleJumpPower;
+                            //Vector2 forceDirection = rotation * direction;
+                            //float lungeVerticalForce = forceDirection.y * doubleJumpPower;
 
-                            rb.AddForce(Vector2.up * lungeVerticalForce, ForceMode2D.Impulse);
+                            //rb.AddForce(Vector2.up * lungeVerticalForce, ForceMode2D.Impulse);
+
+                            Vector2 verticalVector = Vector2.up * doubleJumpVector.y;
+                            rb.AddForce(verticalVector, ForceMode2D.Impulse);
                         }
                         break;
                 }
@@ -193,7 +196,6 @@ public class PlayerController : MonoBehaviour
         {
             coyoteTimeCounter = 0f;
             
-            //rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
             rb.AddForce(Vector2.down * rb.velocity.y * 0.5f, ForceMode2D.Impulse);
         }
     }
