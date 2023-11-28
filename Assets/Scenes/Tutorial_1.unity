@@ -627,6 +627,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1598014807}
     - target: {fileID: 987116874665333535, guid: 88d052e564aa9bb43a2eabfc5eb5ee17, type: 3}
+      propertyPath: doubleJumpVector.x
+      value: 14.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 987116874665333535, guid: 88d052e564aa9bb43a2eabfc5eb5ee17, type: 3}
       propertyPath: doubleJumpParticles.Array.data[0]
       value: 
       objectReference: {fileID: 1209754813}
@@ -14320,7 +14324,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 23.112177
+  orthographic size: 23.111027
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

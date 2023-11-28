@@ -12,19 +12,27 @@ public class BreakableSurface : MonoBehaviour
     [SerializeField] private SurfaceType surfaceType;
 
     private SpriteRenderer sr;
-
+    private BoxCollider2D breakTriggerCollider;
     private Recorder recorder;
 
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        breakTriggerCollider = transform.GetChild(0).GetComponent<BoxCollider2D>();
         recorder = GetComponent<Recorder>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (surfaceType == SurfaceType.Floor)
+        {
+            breakTriggerCollider.size = new Vector2(sr.size.x - 0.1f, breakTriggerCollider.size.y);
+        }
+        else if (surfaceType == SurfaceType.Wall)
+        {
+            breakTriggerCollider.size = new Vector2(breakTriggerCollider.size.x, sr.size.y - 0.1f);
+        }
     }
 
     // Update is called once per frame
@@ -39,7 +47,7 @@ public class BreakableSurface : MonoBehaviour
         recorder.RecordReplayFrame(data);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void Break(Collider2D collision)
     {
         Debug.Log("OnTriggerEnter detected.");
         if (collision.CompareTag("Player 1") && surfaceType == SurfaceType.Floor)
@@ -52,6 +60,7 @@ public class BreakableSurface : MonoBehaviour
                 foreach (Collider2D col in GetComponents<Collider2D>())
                 {
                     col.enabled = false;
+                    transform.GetChild(0).gameObject.SetActive(false);
                 }
             }
         }
@@ -64,6 +73,7 @@ public class BreakableSurface : MonoBehaviour
                 foreach (Collider2D col in GetComponents<Collider2D>())
                 {
                     col.enabled = false;
+                    transform.GetChild(0).gameObject.SetActive(false);
                 }
             }
         }

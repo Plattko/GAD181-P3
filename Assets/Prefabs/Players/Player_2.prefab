@@ -249,7 +249,7 @@ MonoBehaviour:
   jumpPower: 11.5
   canSwap: 1
   playerType: 1
-  doubleJumpVector: {x: 12.80274, y: 6.807338}
+  doubleJumpVector: {x: 14.5, y: 6.807338}
 --- !u!114 &8236570349101044382
 MonoBehaviour:
   m_ObjectHideFlags: 0
