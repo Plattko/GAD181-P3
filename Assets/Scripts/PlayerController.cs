@@ -7,8 +7,10 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Transform groundCheck;
-    private int layerIndex = 6;
-    private LayerMask groundLayer;
+    private int groundLayer = 6;
+    private int p1Layer = 7;
+    private int p2Layer = 8;
+    private LayerMask layerMask;
     public Transform otherPlayer;
     public Transform particleManager;
 
@@ -65,7 +67,17 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         groundCheck = transform.GetChild(1).gameObject.GetComponent<Transform>();
 
-        groundLayer = 1 << layerIndex;
+        layerMask = 1 << groundLayer;
+        
+        if (playerType == PlayerType.Player1)
+        {
+            layerMask |= 1 << p2Layer;
+        }
+        else if (playerType == PlayerType.Player2)
+        {
+            layerMask |= 1 << p1Layer;
+        }
+
         regSpeed = moveSpeed;
     }
 
@@ -149,7 +161,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapBox(new Vector2(groundCheck.position.x, groundCheck.position.y), new Vector2(0.8f, 0.2f), 0f, groundLayer);
+        return Physics2D.OverlapBox(new Vector2(groundCheck.position.x, groundCheck.position.y), new Vector2(0.8f, 0.2f), 0f, layerMask);
     }
 
     public void OnMove(InputAction.CallbackContext context)
