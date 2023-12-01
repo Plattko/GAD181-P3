@@ -58,6 +58,10 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        // Setting frame rate cap
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 240;
+        
         recorder = GetComponent<Recorder>();
     }
 
