@@ -47,9 +47,7 @@ public class PlayerController : MonoBehaviour
     }
     [SerializeField] private PlayerType playerType;
     [SerializeField] private Vector2 doubleJumpVector;
-    //[SerializeField] private float doubleJumpPower = 14.5f;
 
-    //private float p1ReducedJumpSpeed = 6f;
     private float p1ReducedDblJumpSpeed = 4f;
     private float regSpeed;
 
@@ -107,10 +105,6 @@ public class PlayerController : MonoBehaviour
                     {
                         moveSpeed = p1ReducedDblJumpSpeed;
                     }
-                    //else
-                    //{
-                    //    moveSpeed = p1ReducedJumpSpeed;
-                    //}
                 }
                 else if (IsGrounded())
                 {
@@ -195,34 +189,19 @@ public class PlayerController : MonoBehaviour
                 switch (playerType)
                 {
                     case PlayerType.Player1:
-                        //rb.AddForce(Vector2.up * doubleJumpPower, ForceMode2D.Impulse);
 
                         rb.AddForce(doubleJumpVector, ForceMode2D.Impulse);
                         break;
 
                     case PlayerType.Player2:
 
-                        //Vector2 direction = Vector2.right;
-                        //Quaternion rotation = Quaternion.Euler(0, 0, 28);
-
                         if (Mathf.Abs(horizontalInput) > 0.01f)
                         {
-                            //direction = new Vector2(horizontalInput, 0);
-                            //rotation = Quaternion.Euler(0, 0, Mathf.Sign(horizontalInput) * 28);
-
-                            //Vector2 forceDirection = rotation * direction;
-                            //rb.AddForce(forceDirection * doubleJumpPower, ForceMode2D.Impulse);
-
                             Vector2 directionalVector = new Vector2(doubleJumpVector.x * horizontalInput, doubleJumpVector.y);
                             rb.AddForce(directionalVector, ForceMode2D.Impulse);
                         }
                         else if (Mathf.Abs(horizontalInput) < 0.01f)
                         {
-                            //Vector2 forceDirection = rotation * direction;
-                            //float lungeVerticalForce = forceDirection.y * doubleJumpPower;
-
-                            //rb.AddForce(Vector2.up * lungeVerticalForce, ForceMode2D.Impulse);
-
                             Vector2 verticalVector = Vector2.up * doubleJumpVector.y;
                             rb.AddForce(verticalVector, ForceMode2D.Impulse);
                         }
