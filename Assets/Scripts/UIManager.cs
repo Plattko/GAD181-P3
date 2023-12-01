@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public GameObject swapCooldownUI;
+    public GameObject noSwapUI;
     private Image cooldownImage;
 
     private float cooldown;
     private float cooldownTimer;
+    private bool noSwapping = true;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +22,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerManager.nextSwapAllowed > Time.time && !swapCooldownUI.activeInHierarchy)
+        if (PlayerManager.nextSwapAllowed > Time.time && !swapCooldownUI.activeInHierarchy && !noSwapping)
         {
             cooldown = PlayerManager.nextSwapAllowed - Time.time;
             cooldownTimer = cooldown;
@@ -37,5 +39,24 @@ public class UIManager : MonoBehaviour
             swapCooldownUI.SetActive(false);
             cooldownImage.fillAmount = 1f;
         }
+    }
+
+    public void EnableNoSwapUI()
+    {
+        noSwapping = true;
+        
+        if (swapCooldownUI.activeInHierarchy)
+        {
+            swapCooldownUI.SetActive(false);
+            cooldownImage.fillAmount = 1f;
+        }
+
+        noSwapUI.SetActive(true);
+    }
+
+    public void DisableNoSwapUI()
+    {
+        noSwapping = false;
+        noSwapUI.SetActive(false);
     }
 }
