@@ -97,6 +97,12 @@ public class Recorder : MonoBehaviour
 
     private void RestartReplay()
     {
+        GameObject[] replayTrails = GameObject.FindGameObjectsWithTag("ReplayTrail");
+        foreach (GameObject replayTrail in replayTrails)
+        {
+            Destroy(replayTrail);
+        }
+
         isDoingReplay = true;
         // Restart queued data from beginning
         recording.RestartFromBeginning();

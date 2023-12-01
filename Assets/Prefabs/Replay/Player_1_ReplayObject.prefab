@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 6170607352434298281}
   - component: {fileID: 3040978625074906690}
   - component: {fileID: 6674253526217561551}
+  - component: {fileID: -1672283071463894577}
   m_Layer: 7
   m_Name: Player_1_ReplayObject
   m_TagString: Untagged
@@ -152,6 +153,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf2111a8544673b4a9fdc6a2ab445bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1672283071463894577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5713249994343501554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3588b70c2decf774d9251c98b47cd2a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trail: {fileID: 5169786788246522493, guid: 56fe5328364c67549bb51d4db39e443d, type: 3}
+  trailTimer: 0
+  trailInterval: 0.5
 --- !u!1 &7106120400940978077
 GameObject:
   m_ObjectHideFlags: 0
