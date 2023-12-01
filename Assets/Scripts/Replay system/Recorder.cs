@@ -35,8 +35,9 @@ public class Recorder : MonoBehaviour
     {
         if (this.gameObject.transform.CompareTag("Player 1") || this.gameObject.transform.CompareTag("Player 2"))
         {
-            // Disable player visual
+            // Disable player visual and input
             this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+            this.gameObject.GetComponent<PlayerController>().enabled = false;
         }
         else
         {
