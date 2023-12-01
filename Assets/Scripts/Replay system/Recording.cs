@@ -19,7 +19,7 @@ public class Recording
         this.replayQueue = new Queue<ReplayData>(originalQueue);
     }
 
-    public bool PlayNextFrame()
+    public bool PlayNextFrame() // Plays every second recorded frame
     {
         if (replayObject == null)
         {
@@ -27,8 +27,9 @@ public class Recording
         }
 
         bool hasMoreFrames = false;
-        if (replayQueue.Count != 0)
+        if (replayQueue.Count > 1)
         {
+            replayQueue.Dequeue(); // Trash one frame
             ReplayData data = replayQueue.Dequeue();
             replayObject.SetDataForFrame(data);
             hasMoreFrames = true;
