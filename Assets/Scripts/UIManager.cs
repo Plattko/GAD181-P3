@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    // Swap UI variables
     public GameObject swapCooldownUI;
     public GameObject noSwapUI;
     private Image cooldownImage;
@@ -13,10 +15,25 @@ public class UIManager : MonoBehaviour
     private float cooldownTimer;
     private bool noSwapping = true;
 
+    // Replay UI variables
+    public GameObject replayUI;
+
+    // Level Complete UI variables
+    public GameObject levelCompleteUI;
+    public string nextSceneName;
+
+    public bool finalLevel = false;
+    public GameObject playtestCompleteUI;
+
     // Start is called before the first frame update
     void Start()
     {
         cooldownImage = swapCooldownUI.GetComponent<Image>();
+
+        if (!finalLevel)
+        {
+            playtestCompleteUI = null;
+        }
     }
 
     // Update is called once per frame
@@ -39,6 +56,18 @@ public class UIManager : MonoBehaviour
             swapCooldownUI.SetActive(false);
             cooldownImage.fillAmount = 1f;
         }
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            if (replayUI.activeInHierarchy)
+            {
+                EnableLevelCompleteUI();
+            }
+            else if (levelCompleteUI.activeInHierarchy)
+            {
+                LoadNextLevel();
+            }
+        }
     }
 
     public void EnableNoSwapUI()
@@ -58,5 +87,34 @@ public class UIManager : MonoBehaviour
     {
         noSwapping = false;
         noSwapUI.SetActive(false);
+    }
+
+    public void EnableReplayUI()
+    {
+        replayUI.SetActive(true);
+    }
+
+    public void EnableLevelCompleteUI()
+    {
+        if (replayUI.activeInHierarchy)
+        {
+            replayUI.SetActive(false);
+            Debug.Log("Disabled Replay UI.");
+        }
+
+        levelCompleteUI.SetActive(true);
+    }
+
+    public void LoadNextLevel()
+    {
+        if (!finalLevel && nextSceneName != null)
+        {
+            SceneManager.LoadScene(nextSceneName);
+        }
+        else if (finalLevel)
+        {
+            levelCompleteUI.SetActive(false);
+            playtestCompleteUI.SetActive(true);
+        }
     }
 }

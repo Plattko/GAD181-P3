@@ -1,15 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Cinemachine;
 
 public class LevelFinishDoor : MonoBehaviour
 {
-    public string nextSceneName;
-    public bool finalLevel = false;
-    public GameObject playtestCompleteUI;
+    public UIManager uiManager;
     
     private List<Transform> players = new List<Transform>();
     public static bool levelComplete = false;
@@ -31,10 +28,7 @@ public class LevelFinishDoor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!finalLevel)
-        {
-            playtestCompleteUI = null;
-        }
+        
     }
 
     // Update is called once per frame
@@ -50,17 +44,6 @@ public class LevelFinishDoor : MonoBehaviour
             cinemachineCamera.m_Lens.OrthographicSize = replayOrthoSize;
             cinemachineCamera.Follow = replayCameraTransform;
             cinemachineCamera.LookAt = replayCameraTransform;
-
-            if (!finalLevel && Input.GetKeyDown(KeyCode.Return) && nextSceneName != null)
-            {
-                SceneManager.LoadScene(nextSceneName);
-            }
-            else if (finalLevel && Input.GetKeyDown(KeyCode.Return))
-            {
-                playtestCompleteUI.SetActive(true);
-                Time.timeScale = 0;
-            }
-
         }
     }
 
@@ -83,5 +66,6 @@ public class LevelFinishDoor : MonoBehaviour
     private void LevelComplete()
     {
         levelComplete = true;
+        uiManager.EnableReplayUI();
     }
 }
