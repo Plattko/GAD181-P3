@@ -7,12 +7,19 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Transform groundCheck;
+    public Transform otherPlayer;
+    public Transform particleManager;
+
+    // Ground check variables
     private int groundLayer = 6;
     private int p1Layer = 7;
     private int p2Layer = 8;
-    private LayerMask layerMask;
-    public Transform otherPlayer;
-    public Transform particleManager;
+    private LayerMask groundLayerMask;
+
+    // Wall check variables
+    private int wallLayer = 11;
+    private LayerMask wallLayerMask;
+    private Collider2D wallCollider;
 
     // Move variables
     private float horizontalInput;
@@ -35,6 +42,20 @@ public class PlayerController : MonoBehaviour
 
     public bool doubleJumpUsed { get; private set; } = false;
 
+    // Wall-slide and wall-jump variables
+    private float wallSlideSpeed = Mathf.PI;
+    private bool isWallSliding = false;
+    
+    private float wallJumpDirection;
+    private float wallJumpCoyoteTime = 0.15f;
+    private float wallJumpCoyoteTimeCounter;
+    [SerializeField] private Vector2 wallJumpVector;
+
+    private bool isWallJumping = false;
+    private float wallJumpTime = 0.5f;
+    private float wallJumpEndTime;
+    private float wallJumpMoveLerp = 0.5f;
+    
     // Swap variables
     private float swapCooldown = 1f;
     public bool canSwap = true;
@@ -69,16 +90,18 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         groundCheck = transform.GetChild(1).gameObject.GetComponent<Transform>();
 
-        layerMask = 1 << groundLayer;
+        groundLayerMask = 1 << groundLayer;
         
-        if (playerType == PlayerType.Player1)
-        {
-            layerMask |= 1 << p2Layer;
-        }
-        else if (playerType == PlayerType.Player2)
-        {
-            layerMask |= 1 << p1Layer;
-        }
+        //if (playerType == PlayerType.Player1)
+        //{
+        //    groundLayerMask |= 1 << p2Layer;
+        //}
+        //else if (playerType == PlayerType.Player2)
+        //{
+        //    groundLayerMask |= 1 << p1Layer;
+        //}
+
+        wallLayerMask = 1 << wallLayer;
 
         regSpeed = moveSpeed;
     }
@@ -88,6 +111,7 @@ public class PlayerController : MonoBehaviour
     {
         if (IsGrounded())
         {
+            isWallJumping = false;
             doubleJumpUsed = false;
             coyoteTimeCounter = coyoteTime;
         }
@@ -99,18 +123,35 @@ public class PlayerController : MonoBehaviour
         switch (playerType)
         {
             case PlayerType.Player1:
-                if (!IsGrounded())
-                {
-                    if (doubleJumpUsed)
-                    {
-                        moveSpeed = p1ReducedDblJumpSpeed;
-                    }
-                }
-                else if (IsGrounded())
+                
+                if (IsGrounded() || isWallSliding)
                 {
                     moveSpeed = regSpeed;
                 }
                 break;
+        }
+
+        if (isWallSliding)
+        {
+            wallJumpCoyoteTimeCounter = wallJumpCoyoteTime;
+
+            if (wallCollider.transform.position.x < transform.position.x)
+            {
+                wallJumpDirection = 1f;
+            }
+            else if (wallCollider.transform.position.x > transform.position.x)
+            {
+                wallJumpDirection = -1f;
+            }
+        }
+        else
+        {
+            wallJumpCoyoteTimeCounter -= Time.deltaTime;
+        }
+
+        if (isWallJumping && Time.time > wallJumpEndTime)
+        {
+            isWallJumping = false;
         }
     }
 
@@ -123,18 +164,14 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Calculate the move direction and the desired velocity
-        float targetSpeed = horizontalInput * moveSpeed;
-        // Calculate the difference between the current and desired velocity
-        float speedDiff = targetSpeed - rb.velocity.x;
-        // Change between acceleration or deceleration depending on whether the player is providing an input
-        float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
-        // Apply acceleration to the speed difference, then raise to a set power so acceleration increases with higher speeds
-        // Multiply by sign to reapply direction
-        float movement = Mathf.Pow(Mathf.Abs(speedDiff) * accelRate, velPower) * Mathf.Sign(speedDiff);
-
-        // Apply movement force to the Rigidbody on the x axis
-        rb.AddForce(movement * Vector2.right);
+        if (isWallJumping)
+        {
+            Move(wallJumpMoveLerp);
+        }
+        else
+        {
+            Move(1);
+        }
 
         // Friction
         if (IsGrounded() && Mathf.Abs(horizontalInput) < 0.01f)
@@ -147,6 +184,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
         }
 
+        // Fast fall
         if (rb.velocity.y < 0)
         {
             rb.gravityScale = gravityScale * gravityFallMultiplier;
@@ -155,11 +193,64 @@ public class PlayerController : MonoBehaviour
         {
             rb.gravityScale = gravityScale;
         }
+
+        WallSlide();
     }
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapBox(new Vector2(groundCheck.position.x, groundCheck.position.y), new Vector2(0.8f, 0.2f), 0f, layerMask);
+        return Physics2D.OverlapBox(new Vector2(groundCheck.position.x, groundCheck.position.y), new Vector2(0.8f, 0.2f), 0f, groundLayerMask);
+    }
+
+    private bool IsWalled()
+    {
+        wallCollider = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y), new Vector2(1.0f, 0.8f), 0f, wallLayerMask);
+        if (wallCollider == null)
+        {
+            return false;
+        }
+        return wallCollider;
+    }
+
+    private void WallSlide()
+    {
+        if (IsWalled() && !IsGrounded() && Mathf.Abs(horizontalInput) > 0.01f)
+        {
+            isWallSliding = true;
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlideSpeed, float.MaxValue));
+        }
+        else
+        {
+            isWallSliding = false;
+        }
+    }
+
+    private void Move(float lerpAmount)
+    {
+        // Calculate the move direction and the desired velocity
+        float targetSpeed = horizontalInput * moveSpeed;
+        // Reduce player horizontal control during wall jump
+        targetSpeed = Mathf.Lerp(rb.velocity.x, targetSpeed, lerpAmount);
+
+        // Calculate the difference between the current and desired velocity
+        float speedDiff = targetSpeed - rb.velocity.x;
+        // Change between acceleration or deceleration depending on whether the player is providing an input
+        float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : deceleration;
+        // Apply acceleration to the speed difference, then raise to a set power so acceleration increases with higher speeds
+        // Multiply by sign to reapply direction
+        float movement = Mathf.Pow(Mathf.Abs(speedDiff) * accelRate, velPower) * Mathf.Sign(speedDiff);
+
+        // Apply movement force to the Rigidbody on the x axis
+        rb.AddForce(movement * Vector2.right);
+    }
+
+    private void WallJump()
+    {
+        isWallJumping = true;
+        wallJumpEndTime = Time.time + wallJumpTime;
+        doubleJumpUsed = false;
+        rb.velocity = new Vector2(rb.velocity.x, 0f);
+        rb.AddForce(new Vector2(wallJumpVector.x * wallJumpDirection, wallJumpVector.y), ForceMode2D.Impulse);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -171,15 +262,22 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            if (coyoteTimeCounter > 0f)
+            if (coyoteTimeCounter > 0f) // Regular Jump
             {
+                Debug.Log("Regular jump.");
                 // Jump particles
                 particleManager.GetComponent<ParticleManager>().PlayJumpParticles(jumpParticles, groundCheck);
 
                 rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             }
-            else if (!doubleJumpUsed)
+            else if (wallJumpCoyoteTimeCounter > 0f) // Wall jump
             {
+                Debug.Log("Wall jump.");
+                WallJump();
+            }
+            else if (!doubleJumpUsed) // Double jump
+            {
+                Debug.Log("Double jump.");
                 doubleJumpUsed = true;
 
                 // Cancel vertical velocity
@@ -190,6 +288,7 @@ public class PlayerController : MonoBehaviour
                 {
                     case PlayerType.Player1:
 
+                        moveSpeed = p1ReducedDblJumpSpeed;
                         rb.AddForce(doubleJumpVector, ForceMode2D.Impulse);
                         break;
 
@@ -216,7 +315,8 @@ public class PlayerController : MonoBehaviour
         if (context.canceled && rb.velocity.y > 0f)
         {
             coyoteTimeCounter = 0f;
-            
+            wallJumpCoyoteTimeCounter = 0f;
+
             rb.AddForce(Vector2.down * rb.velocity.y * 0.5f, ForceMode2D.Impulse);
         }
     }
