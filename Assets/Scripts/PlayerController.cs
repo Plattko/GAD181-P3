@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
 
     // Ground check variables
     private int groundLayer = 6;
-    private int p1Layer = 7;
-    private int p2Layer = 8;
+    //private int p1Layer = 7;
+    //private int p2Layer = 8;
     private LayerMask groundLayerMask;
 
     // Wall check variables
@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour
             wallJumpCoyoteTimeCounter -= Time.deltaTime;
         }
 
-        if (isWallJumping && Time.time > wallJumpEndTime)
+        if ((isWallJumping && Time.time > wallJumpEndTime) || doubleJumpUsed)
         {
             isWallJumping = false;
         }
@@ -212,19 +212,6 @@ public class PlayerController : MonoBehaviour
         return wallCollider;
     }
 
-    private void WallSlide()
-    {
-        if (IsWalled() && !IsGrounded() && Mathf.Abs(horizontalInput) > 0.01f)
-        {
-            isWallSliding = true;
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlideSpeed, float.MaxValue));
-        }
-        else
-        {
-            isWallSliding = false;
-        }
-    }
-
     private void Move(float lerpAmount)
     {
         // Calculate the move direction and the desired velocity
@@ -244,11 +231,25 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(movement * Vector2.right);
     }
 
+    private void WallSlide()
+    {
+        if (IsWalled() && !IsGrounded() && Mathf.Abs(horizontalInput) > 0.01f)
+        {
+            isWallSliding = true;
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlideSpeed, float.MaxValue));
+        }
+        else
+        {
+            isWallSliding = false;
+        }
+    }
+
     private void WallJump()
     {
         isWallJumping = true;
         wallJumpEndTime = Time.time + wallJumpTime;
         doubleJumpUsed = false;
+
         rb.velocity = new Vector2(rb.velocity.x, 0f);
         rb.AddForce(new Vector2(wallJumpVector.x * wallJumpDirection, wallJumpVector.y), ForceMode2D.Impulse);
     }
