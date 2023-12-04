@@ -251,7 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trail: {fileID: 1292440558598309313, guid: 757fae52f6c1f604b9cdb6b712c7696f, type: 3}
   trailTimer: 0
-  trailInterval: 0.5
+  trailInterval: 0.35
 --- !u!1 &8546062353214532492
 GameObject:
   m_ObjectHideFlags: 0

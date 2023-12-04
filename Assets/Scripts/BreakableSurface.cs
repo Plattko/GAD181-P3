@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class BreakableSurface : MonoBehaviour
 {
@@ -15,11 +16,14 @@ public class BreakableSurface : MonoBehaviour
     private BoxCollider2D breakTriggerCollider;
     private Recorder recorder;
 
+    private CinemachineVirtualCamera virtualCamera;
+
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
         breakTriggerCollider = transform.GetChild(0).GetComponent<BoxCollider2D>();
         recorder = GetComponent<Recorder>();
+        virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
     }
 
     // Start is called before the first frame update
@@ -77,5 +81,7 @@ public class BreakableSurface : MonoBehaviour
                 }
             }
         }
+
+        virtualCamera.gameObject.GetComponent<ScreenShake>().ShakeCamera(1.2f, 0.5f);
     }
 }

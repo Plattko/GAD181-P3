@@ -529,6 +529,7 @@ GameObject:
   m_Component:
   - component: {fileID: 391447250}
   - component: {fileID: 391447249}
+  - component: {fileID: 391447251}
   m_Layer: 0
   m_Name: Cinemachine VC1
   m_TagString: Untagged
@@ -591,6 +592,19 @@ Transform:
   - {fileID: 700960800}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &391447251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391447248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb81f9c52f934c7408e065b13c1e8c08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  virtualCamera: {fileID: 0}
 --- !u!1 &455034287
 GameObject:
   m_ObjectHideFlags: 0
