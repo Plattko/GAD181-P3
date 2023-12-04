@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
     private float p1ReducedDblJumpSpeed = 4f;
     private float regSpeed;
 
-    // Replay system
+    // Replay system variables
     private Recorder recorder;
 
     private void Awake()
@@ -198,6 +198,7 @@ public class PlayerController : MonoBehaviour
         WallSlide();
     }
 
+    // COLLISION CHECKS
     private bool IsGrounded()
     {
         if (Mathf.Abs(rb.velocity.y) > 0.01f)
@@ -217,6 +218,7 @@ public class PlayerController : MonoBehaviour
         return wallCollider;
     }
 
+    // MOVEMENT METHODS
     private void WallSlide()
     {
         if (IsWalled() && !IsGrounded())
@@ -230,6 +232,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Jump()
+    {
+        // Jump particles
+        particleManager.GetComponent<ParticleManager>().PlayJumpParticles(jumpParticles, groundCheck);
+
+        rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+    }
+
     private void WallJump()
     {
         isWallJumping = true;
@@ -238,6 +248,55 @@ public class PlayerController : MonoBehaviour
 
         rb.velocity = new Vector2(rb.velocity.x, 0f);
         rb.AddForce(new Vector2(wallJumpVector.x * wallJumpDirection, wallJumpVector.y), ForceMode2D.Impulse);
+    }
+
+    private void DoubleJump()
+    {
+        // Prevent multiple uses of double jump
+        doubleJumpUsed = true;
+
+        // Cancel vertical velocity
+        rb.velocity = new Vector2(rb.velocity.x, 0f);
+
+        // Double jump
+        switch (playerType)
+        {
+            case PlayerType.Player1:
+
+                moveSpeed = p1ReducedDblJumpSpeed;
+                rb.AddForce(doubleJumpVector, ForceMode2D.Impulse);
+                break;
+
+            case PlayerType.Player2:
+
+                if (Mathf.Abs(horizontalInput) > 0.01f)
+                {
+                    Vector2 directionalVector = new Vector2(doubleJumpVector.x * horizontalInput, doubleJumpVector.y);
+                    rb.AddForce(directionalVector, ForceMode2D.Impulse);
+                }
+                else if (Mathf.Abs(horizontalInput) < 0.01f)
+                {
+                    Vector2 verticalVector = Vector2.up * doubleJumpVector.y;
+                    rb.AddForce(verticalVector, ForceMode2D.Impulse);
+                }
+                break;
+        }
+
+        // Double jump particles
+        particleManager.GetComponent<ParticleManager>().PlayDoubleJumpParticles(doubleJumpParticles, transform);
+    }
+
+    private void Swap()
+    {
+        PlayerManager.nextSwapAllowed = Time.time + swapCooldown;
+
+        Vector2 thisPosition = transform.position;
+        Vector2 otherPosition = otherPlayer.position;
+
+        transform.position = otherPosition;
+        otherPlayer.position = thisPosition;
+
+        particleManager.GetComponent<ParticleManager>().PlaySwapParticles();
     }
 
     private void Move(float lerpAmount)
@@ -259,6 +318,7 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(movement * Vector2.right);
     }
 
+    // INPUT CHECKS
     public void OnMove(InputAction.CallbackContext context)
     {
         horizontalInput = context.ReadValue<float>();
@@ -270,51 +330,15 @@ public class PlayerController : MonoBehaviour
         {
             if (coyoteTimeCounter > 0f) // Regular Jump
             {
-                Debug.Log("Regular jump.");
-                // Jump particles
-                particleManager.GetComponent<ParticleManager>().PlayJumpParticles(jumpParticles, groundCheck);
-
-                rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+                Jump();
             }
             else if (wallJumpCoyoteTimeCounter > 0f) // Wall jump
             {
-                Debug.Log("Wall jump.");
                 WallJump();
             }
             else if (!doubleJumpUsed) // Double jump
             {
-                Debug.Log("Double jump.");
-                doubleJumpUsed = true;
-
-                // Cancel vertical velocity
-                rb.velocity = new Vector2(rb.velocity.x, 0f);
-
-                // Double jump
-                switch (playerType)
-                {
-                    case PlayerType.Player1:
-
-                        moveSpeed = p1ReducedDblJumpSpeed;
-                        rb.AddForce(doubleJumpVector, ForceMode2D.Impulse);
-                        break;
-
-                    case PlayerType.Player2:
-
-                        if (Mathf.Abs(horizontalInput) > 0.01f)
-                        {
-                            Vector2 directionalVector = new Vector2(doubleJumpVector.x * horizontalInput, doubleJumpVector.y);
-                            rb.AddForce(directionalVector, ForceMode2D.Impulse);
-                        }
-                        else if (Mathf.Abs(horizontalInput) < 0.01f)
-                        {
-                            Vector2 verticalVector = Vector2.up * doubleJumpVector.y;
-                            rb.AddForce(verticalVector, ForceMode2D.Impulse);
-                        }
-                        break;
-                }
-
-                // Double jump particles
-                particleManager.GetComponent<ParticleManager>().PlayDoubleJumpParticles(doubleJumpParticles, transform);
+                DoubleJump();
             }
         }
         
@@ -331,15 +355,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed && Time.time > PlayerManager.nextSwapAllowed && canSwap)
         {
-            PlayerManager.nextSwapAllowed = Time.time + swapCooldown;
-            
-            Vector2 thisPosition = transform.position;
-            Vector2 otherPosition = otherPlayer.position;
-
-            transform.position = otherPosition;
-            otherPlayer.position = thisPosition;
-
-            particleManager.GetComponent<ParticleManager>().PlaySwapParticles();
+            Swap();
         }
     }
 }
