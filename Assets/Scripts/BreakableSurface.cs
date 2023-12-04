@@ -66,6 +66,8 @@ public class BreakableSurface : MonoBehaviour
                     col.enabled = false;
                     transform.GetChild(0).gameObject.SetActive(false);
                 }
+
+                virtualCamera.gameObject.GetComponent<ScreenShake>().ShakeCamera(1.2f, 0.5f);
             }
         }
         else if (collision.CompareTag("Player 2") && surfaceType == SurfaceType.Wall)
@@ -79,9 +81,9 @@ public class BreakableSurface : MonoBehaviour
                     col.enabled = false;
                     transform.GetChild(0).gameObject.SetActive(false);
                 }
+
+                virtualCamera.gameObject.GetComponent<ScreenShake>().ShakeCamera(1.2f, 0.5f);
             }
         }
-
-        virtualCamera.gameObject.GetComponent<ScreenShake>().ShakeCamera(1.2f, 0.5f);
     }
 }
