@@ -52,9 +52,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 wallJumpVector;
 
     private bool isWallJumping = false;
-    private float wallJumpTime = 0.5f;
+    private float wallJumpTime = 0.75f;
     private float wallJumpEndTime;
-    private float wallJumpMoveLerp = 0.5f;
+    private float wallJumpMoveLerp = 0.2f;
     
     // Swap variables
     private float swapCooldown = 1f;
@@ -111,7 +111,6 @@ public class PlayerController : MonoBehaviour
     {
         if (IsGrounded())
         {
-            isWallJumping = false;
             doubleJumpUsed = false;
             coyoteTimeCounter = coyoteTime;
         }
@@ -135,6 +134,7 @@ public class PlayerController : MonoBehaviour
         {
             wallJumpCoyoteTimeCounter = wallJumpCoyoteTime;
 
+            // Set the wall-jump direction
             if (wallCollider.transform.position.x < transform.position.x)
             {
                 wallJumpDirection = 1f;
@@ -149,7 +149,8 @@ public class PlayerController : MonoBehaviour
             wallJumpCoyoteTimeCounter -= Time.deltaTime;
         }
 
-        if ((isWallJumping && Time.time > wallJumpEndTime) || doubleJumpUsed)
+        // Conditions that cancel wall-jumping
+        if ((isWallJumping && Time.time > wallJumpEndTime) || IsGrounded() || doubleJumpUsed || (isWallSliding && rb.velocity.x == 0))
         {
             isWallJumping = false;
         }
@@ -199,6 +200,10 @@ public class PlayerController : MonoBehaviour
 
     private bool IsGrounded()
     {
+        if (Mathf.Abs(rb.velocity.y) > 0.01f)
+        {
+            return false;
+        }
         return Physics2D.OverlapBox(new Vector2(groundCheck.position.x, groundCheck.position.y), new Vector2(0.8f, 0.2f), 0f, groundLayerMask);
     }
 
@@ -210,6 +215,29 @@ public class PlayerController : MonoBehaviour
             return false;
         }
         return wallCollider;
+    }
+
+    private void WallSlide()
+    {
+        if (IsWalled() && !IsGrounded())
+        {
+            isWallSliding = true;
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlideSpeed, float.MaxValue));
+        }
+        else
+        {
+            isWallSliding = false;
+        }
+    }
+
+    private void WallJump()
+    {
+        isWallJumping = true;
+        doubleJumpUsed = false;
+        wallJumpEndTime = Time.time + wallJumpTime;
+
+        rb.velocity = new Vector2(rb.velocity.x, 0f);
+        rb.AddForce(new Vector2(wallJumpVector.x * wallJumpDirection, wallJumpVector.y), ForceMode2D.Impulse);
     }
 
     private void Move(float lerpAmount)
@@ -229,29 +257,6 @@ public class PlayerController : MonoBehaviour
 
         // Apply movement force to the Rigidbody on the x axis
         rb.AddForce(movement * Vector2.right);
-    }
-
-    private void WallSlide()
-    {
-        if (IsWalled() && !IsGrounded() && Mathf.Abs(horizontalInput) > 0.01f)
-        {
-            isWallSliding = true;
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlideSpeed, float.MaxValue));
-        }
-        else
-        {
-            isWallSliding = false;
-        }
-    }
-
-    private void WallJump()
-    {
-        isWallJumping = true;
-        wallJumpEndTime = Time.time + wallJumpTime;
-        doubleJumpUsed = false;
-
-        rb.velocity = new Vector2(rb.velocity.x, 0f);
-        rb.AddForce(new Vector2(wallJumpVector.x * wallJumpDirection, wallJumpVector.y), ForceMode2D.Impulse);
     }
 
     public void OnMove(InputAction.CallbackContext context)

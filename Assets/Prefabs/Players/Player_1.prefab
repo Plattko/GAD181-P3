@@ -247,7 +247,7 @@ MonoBehaviour:
   doubleJumpParticles:
   - {fileID: 0}
   jumpPower: 11.5
-  wallJumpVector: {x: 14.5, y: 11.5}
+  wallJumpVector: {x: 8.5, y: 14.5}
   canSwap: 1
   playerType: 0
   doubleJumpVector: {x: 0, y: 14.5}
