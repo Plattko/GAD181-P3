@@ -247,10 +247,77 @@ MonoBehaviour:
   doubleJumpParticles:
   - {fileID: 0}
   jumpPower: 11.5
+  coyoteTimeCounter: 0
   wallJumpVector: {x: 14.5, y: 11.5}
   canSwap: 1
   playerType: 1
   doubleJumpVector: {x: 14.5, y: 6.807338}
+  stretchCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0000017285347
+      value: 0.000013232231
+      inSlope: 0.59906214
+      outSlope: 0.59906214
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.29954326
+      inSlope: -0.00000020861626
+      outSlope: -0.00000020861626
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9999979
+      value: 0.000013232231
+      inSlope: -0.59906256
+      outSlope: -0.59906256
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  squashCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0000017285347
+      value: 0.000013232231
+      inSlope: 0.40094134
+      outSlope: 0.40094134
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.2004832
+      inSlope: -0.00000013411045
+      outSlope: -0.00000013411045
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9999979
+      value: 0.000013232231
+      inSlope: -0.4009416
+      outSlope: -0.4009416
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &8236570349101044382
 MonoBehaviour:
   m_ObjectHideFlags: 0

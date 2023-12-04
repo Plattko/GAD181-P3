@@ -76,6 +76,10 @@ public class PlayerController : MonoBehaviour
     // Replay system variables
     private Recorder recorder;
 
+    public AnimationCurve stretchCurve;
+    public AnimationCurve squashCurve;
+    private bool isGroundedSquash = true; // Used for calling squash coroutine
+
     private void Awake()
     {
         // Setting frame rate cap
@@ -208,6 +212,12 @@ public class PlayerController : MonoBehaviour
         if (Mathf.Abs(rb.velocity.y) <= 0.01f && !PlayerManager.isSwapping && collider != null)
         {
             lastGroundCollider = collider;
+
+            if (!isGroundedSquash)
+            {
+                StartCoroutine(Squash());
+            }
+            isGroundedSquash = true;
             return true;
         }
         return false;
@@ -248,6 +258,10 @@ public class PlayerController : MonoBehaviour
         }
 
         rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        isGroundedSquash = false;
+
+        // Stretch
+        StartCoroutine(Stretch(false));
     }
 
     private void WallJump()
@@ -275,6 +289,7 @@ public class PlayerController : MonoBehaviour
 
                 moveSpeed = p1ReducedDblJumpSpeed;
                 rb.AddForce(doubleJumpVector, ForceMode2D.Impulse);
+                StartCoroutine(Stretch(false));
                 break;
 
             case PlayerType.Player2:
@@ -283,11 +298,13 @@ public class PlayerController : MonoBehaviour
                 {
                     Vector2 directionalVector = new Vector2(doubleJumpVector.x * horizontalInput, doubleJumpVector.y);
                     rb.AddForce(directionalVector, ForceMode2D.Impulse);
+                    StartCoroutine(Stretch(true));
                 }
                 else if (Mathf.Abs(horizontalInput) < 0.01f)
                 {
                     Vector2 verticalVector = Vector2.up * doubleJumpVector.y;
                     rb.AddForce(verticalVector, ForceMode2D.Impulse);
+                    StartCoroutine(Stretch(false));
                 }
                 break;
         }
@@ -383,5 +400,45 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForFixedUpdate();
         PlayerManager.isSwapping = false;
         Debug.Log("Swapping is false");
+    }
+
+    private IEnumerator Stretch(bool sideways)
+    {
+        float duration = 0.5f;
+        float time = 0;
+
+        while (time < duration)
+        {
+            float stretchScale = stretchCurve.Evaluate(time / duration);
+
+            if (!sideways)
+            {
+                transform.localScale = new Vector3(1f, 1f + stretchScale, 1f);
+            }
+            else
+            {
+                transform.localScale = new Vector3(1f + stretchScale, 1f, 1f);
+            }
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.localScale = Vector3.one;
+    }
+
+    private IEnumerator Squash()
+    {
+        float duration = 0.5f;
+        float time = 0;
+
+        while (time < duration)
+        {
+            float squashScale = squashCurve.Evaluate(time / duration);
+            transform.localScale = new Vector3(1f, 1f - squashScale, 1f);
+
+            time += Time.deltaTime;
+            yield return null;
+        }
     }
 }
