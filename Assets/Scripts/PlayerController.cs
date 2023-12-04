@@ -12,9 +12,10 @@ public class PlayerController : MonoBehaviour
 
     // Ground check variables
     private int groundLayer = 6;
-    //private int p1Layer = 7;
-    //private int p2Layer = 8;
+    private int p1Layer = 7;
+    private int p2Layer = 8;
     private LayerMask groundLayerMask;
+    private Collider2D lastGroundCollider;
 
     // Wall check variables
     private int wallLayer = 11;
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField] private float jumpPower = 8f;
     private float coyoteTime = 0.15f;
-    private float coyoteTimeCounter;
+    public float coyoteTimeCounter;
     private float gravityScale = 1f;
     private float gravityFallMultiplier = 1.9f;
 
@@ -91,15 +92,15 @@ public class PlayerController : MonoBehaviour
         groundCheck = transform.GetChild(1).gameObject.GetComponent<Transform>();
 
         groundLayerMask = 1 << groundLayer;
-        
-        //if (playerType == PlayerType.Player1)
-        //{
-        //    groundLayerMask |= 1 << p2Layer;
-        //}
-        //else if (playerType == PlayerType.Player2)
-        //{
-        //    groundLayerMask |= 1 << p1Layer;
-        //}
+
+        if (playerType == PlayerType.Player1)
+        {
+            groundLayerMask |= 1 << p2Layer;
+        }
+        else if (playerType == PlayerType.Player2)
+        {
+            groundLayerMask |= 1 << p1Layer;
+        }
 
         wallLayerMask = 1 << wallLayer;
 
@@ -198,27 +199,33 @@ public class PlayerController : MonoBehaviour
         WallSlide();
     }
 
+    // ---------------------------------
     // COLLISION CHECKS
+    // ---------------------------------
     private bool IsGrounded()
     {
-        if (Mathf.Abs(rb.velocity.y) > 0.01f)
+        Collider2D collider = Physics2D.OverlapBox(new Vector2(groundCheck.position.x, groundCheck.position.y), new Vector2(0.8f, 0.2f), 0f, groundLayerMask);
+        if (Mathf.Abs(rb.velocity.y) <= 0.01f && !PlayerManager.isSwapping && collider != null)
         {
-            return false;
+            lastGroundCollider = collider;
+            return true;
         }
-        return Physics2D.OverlapBox(new Vector2(groundCheck.position.x, groundCheck.position.y), new Vector2(0.8f, 0.2f), 0f, groundLayerMask);
+        return false;
     }
 
     private bool IsWalled()
     {
         wallCollider = Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y), new Vector2(1.0f, 0.8f), 0f, wallLayerMask);
-        if (wallCollider == null)
+        if (wallCollider != null)
         {
-            return false;
+            return wallCollider;
         }
-        return wallCollider;
+        return false;
     }
 
+    // ---------------------------------
     // MOVEMENT METHODS
+    // ---------------------------------
     private void WallSlide()
     {
         if (IsWalled() && !IsGrounded())
@@ -235,7 +242,10 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         // Jump particles
-        particleManager.GetComponent<ParticleManager>().PlayJumpParticles(jumpParticles, groundCheck);
+        if (lastGroundCollider.gameObject.layer == groundLayer)
+        {
+            particleManager.GetComponent<ParticleManager>().PlayJumpParticles(jumpParticles, groundCheck);
+        }
 
         rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
     }
@@ -288,6 +298,8 @@ public class PlayerController : MonoBehaviour
 
     private void Swap()
     {
+        PlayerManager.isSwapping = true;
+
         PlayerManager.nextSwapAllowed = Time.time + swapCooldown;
 
         Vector2 thisPosition = transform.position;
@@ -296,7 +308,12 @@ public class PlayerController : MonoBehaviour
         transform.position = otherPosition;
         otherPlayer.position = thisPosition;
 
+        coyoteTimeCounter = 0f;
+        otherPlayer.GetComponent<PlayerController>().coyoteTimeCounter = 0f;
+
         particleManager.GetComponent<ParticleManager>().PlaySwapParticles();
+
+        StartCoroutine(NoLongerSwapping());
     }
 
     private void Move(float lerpAmount)
@@ -318,7 +335,9 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(movement * Vector2.right);
     }
 
+    // ---------------------------------
     // INPUT CHECKS
+    // ---------------------------------
     public void OnMove(InputAction.CallbackContext context)
     {
         horizontalInput = context.ReadValue<float>();
@@ -357,5 +376,12 @@ public class PlayerController : MonoBehaviour
         {
             Swap();
         }
+    }
+
+    public IEnumerator NoLongerSwapping()
+    {
+        yield return new WaitForFixedUpdate();
+        PlayerManager.isSwapping = false;
+        Debug.Log("Swapping is false");
     }
 }
