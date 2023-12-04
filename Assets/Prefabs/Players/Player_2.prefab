@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 8327637700511157966}
   - component: {fileID: 987116874665333535}
   - component: {fileID: 8236570349101044382}
+  - component: {fileID: 761256731150048490}
   m_Layer: 8
   m_Name: Player_2
   m_TagString: Player 2
@@ -247,7 +248,7 @@ MonoBehaviour:
   doubleJumpParticles:
   - {fileID: 0}
   jumpPower: 11.5
-  canSwap: 1
+  canSwap: 0
   playerType: 1
   doubleJumpVector: {x: 14.5, y: 6.807338}
 --- !u!114 &8236570349101044382
@@ -263,6 +264,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   replayObjectPrefab: {fileID: 8054980526184353386, guid: 277389950f787a14f87b077533d74494, type: 3}
+--- !u!247 &761256731150048490
+ConstantForce2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3211600445945508398}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 0}
+  m_RelativeForce: {x: 0, y: 0}
+  m_Torque: 0
 --- !u!1 &3775678241370715943
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +347,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0.8584906, b: 0.05629153, a: 1}
   m_FlipX: 0
