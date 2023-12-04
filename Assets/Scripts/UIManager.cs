@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -20,6 +21,17 @@ public class UIManager : MonoBehaviour
 
     // Level Complete UI variables
     public GameObject levelCompleteUI;
+    
+    //private Image levelCompletePanel;
+    //private TextMeshProUGUI levelCompleteText;
+    //private Image nextLevelButton;
+    //private TextMeshProUGUI nextLevelText;
+
+    //private float lcpTargetAlpha = 0.39f;
+    //private float lctTargetAlpha = 1f;
+    //private float nlbTargetAlpha = 0.35f;
+    //private float nltTargetAlpha = 1f;
+
     public string nextSceneName;
 
     public bool finalLevel = false;
@@ -34,6 +46,18 @@ public class UIManager : MonoBehaviour
         {
             playtestCompleteUI = null;
         }
+
+        //levelCompletePanel = levelCompleteUI.GetComponent<Image>();
+        //levelCompletePanel.color = new Color(levelCompletePanel.color.r, levelCompletePanel.color.g, levelCompletePanel.color.b, 0);
+
+        //levelCompleteText = levelCompleteUI.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        //levelCompleteText.color = new Color(levelCompletePanel.color.r, levelCompletePanel.color.g, levelCompletePanel.color.b, 0);
+
+        //nextLevelButton = levelCompleteUI.gameObject.transform.GetChild(1).GetComponent<Image>();
+        //nextLevelButton.color = new Color(levelCompletePanel.color.r, levelCompletePanel.color.g, levelCompletePanel.color.b, 0);
+
+        //nextLevelText = levelCompleteUI.gameObject.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
+        //nextLevelText.color = new Color(levelCompletePanel.color.r, levelCompletePanel.color.g, levelCompletePanel.color.b, 0);
     }
 
     // Update is called once per frame
@@ -57,6 +81,7 @@ public class UIManager : MonoBehaviour
             cooldownImage.fillAmount = 1f;
         }
 
+        // Return key shortcuts
         if (Input.GetKeyDown(KeyCode.Return))
         {
             if (replayUI.activeInHierarchy)
@@ -68,6 +93,11 @@ public class UIManager : MonoBehaviour
                 LoadNextLevel();
             }
         }
+
+        //if (levelCompleteUI.activeInHierarchy)
+        //{
+
+        //}
     }
 
     public void EnableNoSwapUI()
@@ -104,6 +134,13 @@ public class UIManager : MonoBehaviour
 
         levelCompleteUI.SetActive(true);
     }
+
+    //private void FadeInAlpha(float targetAlpha, float currentAlpha)
+    //{
+    //    float fadeDuration = 2f;
+
+
+    //}
 
     public void LoadNextLevel()
     {
