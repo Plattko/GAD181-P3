@@ -21,19 +21,23 @@ public class UIManager : MonoBehaviour
 
     // Level Complete UI variables
     public GameObject levelCompleteUI;
-    
-    //private Image levelCompletePanel;
-    //private TextMeshProUGUI levelCompleteText;
-    //private Image nextLevelButton;
-    //private TextMeshProUGUI nextLevelText;
 
-    //private float lcpTargetAlpha = 0.39f;
-    //private float lctTargetAlpha = 1f;
-    //private float nlbTargetAlpha = 0.35f;
-    //private float nltTargetAlpha = 1f;
+    private List<Transform> levComColours = new List<Transform>();
+    private Transform levComPanel;
+    private Transform levComText;
+    private Transform nextLevButton;
+    private Transform nextLevText;
 
+    private List<float> levComAlphas = new List<float>();
+    private float lcpTargetAlpha = 0.39f;
+    private float lctTargetAlpha = 1f;
+    private float nlbTargetAlpha = 0.35f;
+    private float nltTargetAlpha = 1f;
+
+    private float fadeInDuration = 1f;
+
+    // Next level variables
     public string nextSceneName;
-
     public bool finalLevel = false;
     public GameObject playtestCompleteUI;
 
@@ -47,17 +51,26 @@ public class UIManager : MonoBehaviour
             playtestCompleteUI = null;
         }
 
-        //levelCompletePanel = levelCompleteUI.GetComponent<Image>();
-        //levelCompletePanel.color = new Color(levelCompletePanel.color.r, levelCompletePanel.color.g, levelCompletePanel.color.b, 0);
+        levComPanel = levelCompleteUI.transform.GetChild(0);
+        levComColours.Add(levComPanel);
+        levComAlphas.Add(lcpTargetAlpha);
 
-        //levelCompleteText = levelCompleteUI.gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        //levelCompleteText.color = new Color(levelCompletePanel.color.r, levelCompletePanel.color.g, levelCompletePanel.color.b, 0);
+        levComText = levelCompleteUI.transform.GetChild(1);
+        levComColours.Add(levComText);
+        levComAlphas.Add(lctTargetAlpha);
 
-        //nextLevelButton = levelCompleteUI.gameObject.transform.GetChild(1).GetComponent<Image>();
-        //nextLevelButton.color = new Color(levelCompletePanel.color.r, levelCompletePanel.color.g, levelCompletePanel.color.b, 0);
+        nextLevButton = levelCompleteUI.transform.GetChild(2);
+        levComColours.Add(nextLevButton);
+        levComAlphas.Add(nlbTargetAlpha);
 
-        //nextLevelText = levelCompleteUI.gameObject.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
-        //nextLevelText.color = new Color(levelCompletePanel.color.r, levelCompletePanel.color.g, levelCompletePanel.color.b, 0);
+        nextLevText = levelCompleteUI.transform.GetChild(2).GetChild(0);
+        levComColours.Add(nextLevText);
+        levComAlphas.Add(nltTargetAlpha);
+
+        for (int i = 0; i < levComColours.Count; i++)
+        {
+            SetAlphaToZero(levComColours[i]);
+        }
     }
 
     // Update is called once per frame
@@ -94,10 +107,49 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        //if (levelCompleteUI.activeInHierarchy)
-        //{
+        if (levelCompleteUI.activeInHierarchy)
+        {
+            for (int i = 0; i < levComColours.Count; i++)
+            {
+                FadeInAlpha(levComColours[i], levComAlphas[i]);
+            }
+        }
+    }
 
-        //}
+    private void SetAlphaToZero(Transform transform)
+    {
+        Image image = transform.GetComponent<Image>();
+
+        if (image != null)
+        {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, 0f);
+        }
+        else
+        {
+            TextMeshProUGUI text = transform.GetComponent<TextMeshProUGUI>();
+            if (text != null)
+            {
+                text.color = new Color(text.color.r, text.color.g, text.color.b, 0f);
+            }
+        }
+    }
+
+    private void FadeInAlpha(Transform transform, float targetAlpha)
+    {
+        Image image = transform.GetComponent<Image>();
+
+        if (image != null)
+        {
+            image.color = Color.Lerp(image.color, new Color(image.color.r, image.color.g, image.color.b, targetAlpha), Time.deltaTime / fadeInDuration);
+        }
+        else
+        {
+            TextMeshProUGUI text = transform.GetComponent<TextMeshProUGUI>();
+            if (text != null)
+            {
+                text.color = Color.Lerp(text.color, new Color(text.color.r, text.color.g, text.color.b, targetAlpha), Time.deltaTime / fadeInDuration);
+            }
+        }
     }
 
     public void EnableNoSwapUI()
@@ -134,13 +186,6 @@ public class UIManager : MonoBehaviour
 
         levelCompleteUI.SetActive(true);
     }
-
-    //private void FadeInAlpha(float targetAlpha, float currentAlpha)
-    //{
-    //    float fadeDuration = 2f;
-
-
-    //}
 
     public void LoadNextLevel()
     {
