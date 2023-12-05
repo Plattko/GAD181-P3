@@ -181,7 +181,6 @@ public class UIManager : MonoBehaviour
         if (replayUI.activeInHierarchy)
         {
             replayUI.SetActive(false);
-            Debug.Log("Disabled Replay UI.");
         }
 
         levelCompleteUI.SetActive(true);
