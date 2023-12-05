@@ -56,8 +56,41 @@
                 },
                 {
                     "name": "",
+                    "id": "5982aba4-5be6-4f2c-b4c2-cc3c58d80c4b",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard_P1",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "80878b9e-dc21-4ebe-814d-f986cc6f848b",
                     "path": "<Keyboard>/numpad0",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard_P2",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cf953741-e0ae-4084-8a65-78d72c7b1c08",
+                    "path": "<Keyboard>/numpad8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard_P2",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "498cbb25-6c9c-4f73-8c0a-64d99b28239a",
+                    "path": "<Keyboard>/numpadPeriod",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard_P2",
