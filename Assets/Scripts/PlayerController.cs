@@ -80,12 +80,16 @@ public class PlayerController : MonoBehaviour
     public AnimationCurve squashCurve;
     private bool isGroundedSquash = true; // Used for calling squash coroutine
 
+    public static bool isPlayerDisabled = false;
+
     private void Awake()
     {
         // Setting frame rate cap
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 240;
-        
+
+        isPlayerDisabled = false;
+
         recorder = GetComponent<Recorder>();
     }
 

@@ -9,13 +9,15 @@ public class LevelFinishDoor : MonoBehaviour
     public UIManager uiManager;
     
     private List<Transform> players = new List<Transform>();
-    public static bool levelComplete = false;
+    public static bool levelComplete;
 
     // Camera
     [SerializeField] CinemachineVirtualCamera cinemachineCamera;
     [SerializeField] private Transform replayCameraTransform;
     [SerializeField] private Transform playerCameraTransform;
     [SerializeField] private float replayOrthoSize;
+
+    [SerializeField] private GameObject swapIcon;
 
     private void Awake()
     {
@@ -67,6 +69,10 @@ public class LevelFinishDoor : MonoBehaviour
     {
         levelComplete = true;
         LevelTimer.isTimerRunning = false;
+        if (swapIcon != null)
+        {
+        swapIcon.SetActive(false);
+        }
         uiManager.EnableReplayUI();
     }
 }

@@ -1107,6 +1107,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: swapIcon
+      value: 
+      objectReference: {fileID: 1088793609}
+    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 1360131917}

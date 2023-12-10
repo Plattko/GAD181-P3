@@ -37,6 +37,7 @@ public class Recorder : MonoBehaviour
         {
             // Disable player visual and input
             this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+            this.gameObject.GetComponent<PlayerController>().canSwap = false;
             this.gameObject.GetComponent<PlayerController>().enabled = false;
         }
         else
