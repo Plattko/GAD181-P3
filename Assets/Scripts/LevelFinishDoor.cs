@@ -66,6 +66,7 @@ public class LevelFinishDoor : MonoBehaviour
     private void LevelComplete()
     {
         levelComplete = true;
+        LevelTimer.isTimerRunning = false;
         uiManager.EnableReplayUI();
     }
 }
