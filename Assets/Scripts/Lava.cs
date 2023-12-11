@@ -34,7 +34,7 @@ public class Lava : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player 1") || collision.CompareTag("Player 2"))
+        if ((collision.CompareTag("Player 1") || collision.CompareTag("Player 2")) && !PlayerController.isPlayerDisabled)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

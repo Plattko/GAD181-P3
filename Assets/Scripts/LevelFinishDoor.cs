@@ -70,6 +70,7 @@ public class LevelFinishDoor : MonoBehaviour
     {
         levelComplete = true;
         LevelTimer.isTimerRunning = false;
+        PlayerController.isPlayerDisabled = true;
         if (swapIcon != null)
         {
         swapIcon.SetActive(false);
