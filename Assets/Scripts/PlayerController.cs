@@ -334,6 +334,7 @@ public class PlayerController : MonoBehaviour
         otherPlayer.GetComponent<PlayerController>().coyoteTimeCounter = 0f;
 
         particleManager.GetComponent<ParticleManager>().PlaySwapParticles();
+        particleManager.GetComponent<ParticleManager>().PlaySwapTrailParticles();
 
         StartCoroutine(NoLongerSwapping());
     }

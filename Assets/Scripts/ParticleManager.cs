@@ -10,10 +10,13 @@ public class ParticleManager : MonoBehaviour
     [SerializeField] private ParticleSystem p1SwapParticles;
     [SerializeField] private ParticleSystem p2SwapParticles;
 
+    [SerializeField] private Transform swapTrailTransform;
+    private ParticleSystem swapTrailParticles;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        swapTrailParticles = swapTrailTransform.GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -46,5 +49,27 @@ public class ParticleManager : MonoBehaviour
 
         p1SwapParticles.Play();
         p2SwapParticles.Play();
+    }
+
+    public void PlaySwapTrailParticles()
+    {
+        // Set the particle system's position to the midpoint between the players
+        swapTrailTransform.position = p1Transform.position + (p2Transform.position - p1Transform.position) / 2;
+
+        // Scale the particle shape
+        var shape = swapTrailParticles.shape;
+        shape.scale = new Vector2((p2Transform.position - p1Transform.position).magnitude - 2.5f, shape.scale.y);
+
+        // Set the number of particles in the burst
+        var emission = swapTrailParticles.emission;
+        var burst = new ParticleSystem.Burst(0, (ushort)Mathf.Clamp(Mathf.RoundToInt(shape.scale.x * 1.5f), 25, int.MaxValue));
+        emission.SetBurst(0, burst);
+
+        // Rotate the particle system
+        Vector2 direction = p1Transform.position - swapTrailTransform.position;
+        swapTrailTransform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+
+        swapTrailParticles.Stop();
+        swapTrailParticles.Play();
     }
 }
