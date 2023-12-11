@@ -27,6 +27,8 @@ public class UIManager : MonoBehaviour
     private Transform levComText;
     private Transform nextLevButton;
     private Transform nextLevText;
+    private Transform repLevButton;
+    private Transform repLevText;
 
     private List<float> levComAlphas = new List<float>();
     private float lcpTargetAlpha = 0.39f;
@@ -35,6 +37,8 @@ public class UIManager : MonoBehaviour
     private float nltTargetAlpha = 1f;
 
     private float fadeInDuration = 1f;
+
+    private bool onMainMenu = false;
 
     // Next level variables
     public string nextSceneName;
@@ -67,9 +71,22 @@ public class UIManager : MonoBehaviour
         levComColours.Add(nextLevText);
         levComAlphas.Add(nltTargetAlpha);
 
+        repLevButton = levelCompleteUI.transform.GetChild(3);
+        levComColours.Add(repLevButton);
+        levComAlphas.Add(nlbTargetAlpha);
+
+        repLevText = levelCompleteUI.transform.GetChild(3).GetChild(0);
+        levComColours.Add(repLevText);
+        levComAlphas.Add(nltTargetAlpha);
+
         for (int i = 0; i < levComColours.Count; i++)
         {
             SetAlphaToZero(levComColours[i]);
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            onMainMenu = true;
         }
     }
 
@@ -101,7 +118,7 @@ public class UIManager : MonoBehaviour
             {
                 EnableLevelCompleteUI();
             }
-            else if (levelCompleteUI.activeInHierarchy)
+            else if (levelCompleteUI.activeInHierarchy || onMainMenu)
             {
                 LoadNextLevel();
             }
@@ -197,5 +214,10 @@ public class UIManager : MonoBehaviour
             levelCompleteUI.SetActive(false);
             playtestCompleteUI.SetActive(true);
         }
+    }
+
+    public void ReloadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
