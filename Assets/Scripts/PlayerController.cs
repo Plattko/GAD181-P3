@@ -419,18 +419,18 @@ public class PlayerController : MonoBehaviour
 
             if (!sideways)
             {
-                transform.localScale = new Vector3(transform.localScale.x, 1f + stretchScale, 1f);
+                transform.GetChild(0).localScale = new Vector3(transform.GetChild(0).localScale.x, 1.25f + stretchScale, 1f);
             }
             else
             {
-                transform.localScale = new Vector3(1f + stretchScale, transform.localScale.y, 1f);
+                transform.GetChild(0).localScale = new Vector3(0.9f + stretchScale, transform.GetChild(0).localScale.y, 1f);
             }
 
             stretchTime += Time.deltaTime;
             yield return null;
         }
 
-        transform.localScale = Vector3.one;
+        transform.GetChild(0).localScale = new Vector3(0.9f, 1.25f, 1f);
         stretchTime = 0f;
     }
 
@@ -442,10 +442,11 @@ public class PlayerController : MonoBehaviour
         while (time < duration)
         {
             float squashScale = squashCurve.Evaluate(time / duration);
-            transform.localScale = new Vector3(1f, 1f - squashScale, 1f);
+            transform.GetChild(0).localScale = new Vector3(0.9f, 1.25f - squashScale, 1f);
 
             time += Time.deltaTime;
             yield return null;
         }
+        transform.GetChild(0).localScale = new Vector3(0.9f, 1.25f, 1f);
     }
 }
