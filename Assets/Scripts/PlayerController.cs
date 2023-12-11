@@ -302,6 +302,11 @@ public class PlayerController : MonoBehaviour
                 if (Mathf.Abs(horizontalInput) > 0.01f)
                 {
                     Vector2 directionalVector = new Vector2(doubleJumpVector.x * horizontalInput, doubleJumpVector.y);
+                    if (Mathf.Sign(rb.velocity.x) != Mathf.Sign(directionalVector.x))
+                    {
+                        directionalVector.x -= rb.velocity.x;
+                    }
+
                     rb.AddForce(directionalVector, ForceMode2D.Impulse);
                     StartCoroutine(Stretch(true, 0));
                 }
