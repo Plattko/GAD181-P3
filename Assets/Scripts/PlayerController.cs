@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
     public AnimationCurve stretchCurve;
     public AnimationCurve squashCurve;
     private bool isGroundedSquash = true; // Used for calling squash coroutine
+    private float stretchTime = 0;
 
     public static bool isPlayerDisabled = false;
 
@@ -265,7 +266,7 @@ public class PlayerController : MonoBehaviour
         isGroundedSquash = false;
 
         // Stretch
-        StartCoroutine(Stretch(false));
+        StartCoroutine(Stretch(false, 0));
     }
 
     private void WallJump()
@@ -293,7 +294,7 @@ public class PlayerController : MonoBehaviour
 
                 moveSpeed = p1ReducedDblJumpSpeed;
                 rb.AddForce(doubleJumpVector, ForceMode2D.Impulse);
-                StartCoroutine(Stretch(false));
+                StartCoroutine(Stretch(false, stretchTime));
                 break;
 
             case PlayerType.Player2:
@@ -302,13 +303,13 @@ public class PlayerController : MonoBehaviour
                 {
                     Vector2 directionalVector = new Vector2(doubleJumpVector.x * horizontalInput, doubleJumpVector.y);
                     rb.AddForce(directionalVector, ForceMode2D.Impulse);
-                    StartCoroutine(Stretch(true));
+                    StartCoroutine(Stretch(true, 0));
                 }
                 else if (Mathf.Abs(horizontalInput) < 0.01f)
                 {
                     Vector2 verticalVector = Vector2.up * doubleJumpVector.y;
                     rb.AddForce(verticalVector, ForceMode2D.Impulse);
-                    StartCoroutine(Stretch(false));
+                    StartCoroutine(Stretch(false, stretchTime));
                 }
                 break;
         }
@@ -406,29 +407,30 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Swapping is false");
     }
 
-    private IEnumerator Stretch(bool sideways)
+    private IEnumerator Stretch(bool sideways, float startingTime)
     {
         float duration = 0.5f;
-        float time = 0;
+        stretchTime = startingTime;
 
-        while (time < duration)
+        while (stretchTime < duration)
         {
-            float stretchScale = stretchCurve.Evaluate(time / duration);
+            float stretchScale = stretchCurve.Evaluate(stretchTime / duration);
 
             if (!sideways)
             {
-                transform.localScale = new Vector3(1f, 1f + stretchScale, 1f);
+                transform.localScale = new Vector3(transform.localScale.x, 1f + stretchScale, 1f);
             }
             else
             {
-                transform.localScale = new Vector3(1f + stretchScale, 1f, 1f);
+                transform.localScale = new Vector3(1f + stretchScale, transform.localScale.y, 1f);
             }
 
-            time += Time.deltaTime;
+            stretchTime += Time.deltaTime;
             yield return null;
         }
 
         transform.localScale = Vector3.one;
+        stretchTime = 0f;
     }
 
     private IEnumerator Squash()
