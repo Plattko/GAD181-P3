@@ -22,6 +22,7 @@ public class LevelFinishDoor : MonoBehaviour
     private void Awake()
     {
         levelComplete = false;
+
         cinemachineCamera.m_Lens.OrthographicSize = 5f;
         cinemachineCamera.Follow = playerCameraTransform;
         cinemachineCamera.LookAt = playerCameraTransform;

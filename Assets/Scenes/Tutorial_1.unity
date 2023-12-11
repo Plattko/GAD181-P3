@@ -616,6 +616,91 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 358660458}
   m_CullTransparentMesh: 1
+--- !u!1001 &446859147
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: uiManager
+      value: 
+      objectReference: {fileID: 2124531897}
+    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: nextSceneName
+      value: Tutorial_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: replayOrthoSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: cinemachineCamera
+      value: 
+      objectReference: {fileID: 455242863}
+    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: playerCameraTransform
+      value: 
+      objectReference: {fileID: 1959508983}
+    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: replayCameraTransform
+      value: 
+      objectReference: {fileID: 1656199816}
+    - target: {fileID: 2561715066176543034, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
+      propertyPath: m_Name
+      value: Level Finish Door
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
 --- !u!1 &455242862
 GameObject:
   m_ObjectHideFlags: 0
@@ -1948,91 +2033,6 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2487323375927708820, guid: 6a58117c1c4154045a200d4fdb39cba4, type: 3}
   m_PrefabInstance: {fileID: 1301100975}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1314964725
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561715066176543012, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
-      propertyPath: uiManager
-      value: 
-      objectReference: {fileID: 2124531897}
-    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
-      propertyPath: nextSceneName
-      value: Tutorial_2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
-      propertyPath: replayOrthoSize
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
-      propertyPath: cinemachineCamera
-      value: 
-      objectReference: {fileID: 455242863}
-    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
-      propertyPath: playerCameraTransform
-      value: 
-      objectReference: {fileID: 1959508983}
-    - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
-      propertyPath: replayCameraTransform
-      value: 
-      objectReference: {fileID: 1656199816}
-    - target: {fileID: 2561715066176543034, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
-      propertyPath: m_Name
-      value: Level Finish Door
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
 --- !u!1 &1388486337
 GameObject:
   m_ObjectHideFlags: 0
@@ -15324,7 +15324,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 23.106949
+  orthographic size: 23.108644
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -15660,7 +15660,7 @@ SceneRoots:
   - {fileID: 897682257}
   - {fileID: 962445390}
   - {fileID: 1929396859}
-  - {fileID: 1314964725}
+  - {fileID: 446859147}
   - {fileID: 188813015}
   - {fileID: 1598014807}
   - {fileID: 1284667135}

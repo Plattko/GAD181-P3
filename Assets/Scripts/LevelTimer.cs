@@ -22,8 +22,9 @@ public class LevelTimer : MonoBehaviour
 
             int minutes = Mathf.FloorToInt(time / 60);
             int seconds = Mathf.FloorToInt(time % 60);
+            int milliseconds = Mathf.FloorToInt((time - Mathf.FloorToInt(time)) * 100);
 
-            string formattedTime = string.Format("{0:00}:{1:00}", minutes, seconds);
+            string formattedTime = string.Format("Time to complete: " + "{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
 
             timeText.text = formattedTime;
         }

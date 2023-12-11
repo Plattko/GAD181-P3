@@ -515,7 +515,7 @@ Transform:
   m_GameObject: {fileID: 323025079}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 16, z: 0}
+  m_LocalPosition: {x: 0, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1012,7 +1012,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
       propertyPath: replayOrthoSize
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2561715066176543014, guid: 58c7c80cde0cf7045967476323eb70da, type: 3}
       propertyPath: cinemachineCamera
@@ -1285,7 +1285,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 24.667337
+  orthographic size: 24.66915
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
