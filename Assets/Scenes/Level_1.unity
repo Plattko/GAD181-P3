@@ -1467,7 +1467,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 10.797193
+  orthographic size: 10.797985
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -21527,8 +21527,8 @@ MonoBehaviour:
   noSwapUI: {fileID: 0}
   replayUI: {fileID: 888360200}
   levelCompleteUI: {fileID: 370258303}
-  nextSceneName: 
-  finalLevel: 1
+  nextSceneName: Level_2
+  finalLevel: 0
   playtestCompleteUI: {fileID: 1519321048}
 --- !u!4 &1360131918
 Transform:
