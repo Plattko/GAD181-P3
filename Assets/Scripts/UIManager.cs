@@ -48,40 +48,46 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cooldownImage = swapCooldownUI.GetComponent<Image>();
+        if (swapCooldownUI != null)
+        {
+            cooldownImage = swapCooldownUI.GetComponent<Image>();
+        }
 
         if (!finalLevel)
         {
             playtestCompleteUI = null;
         }
 
-        levComPanel = levelCompleteUI.transform.GetChild(0);
-        levComColours.Add(levComPanel);
-        levComAlphas.Add(lcpTargetAlpha);
-
-        levComText = levelCompleteUI.transform.GetChild(1);
-        levComColours.Add(levComText);
-        levComAlphas.Add(lctTargetAlpha);
-
-        nextLevButton = levelCompleteUI.transform.GetChild(2);
-        levComColours.Add(nextLevButton);
-        levComAlphas.Add(nlbTargetAlpha);
-
-        nextLevText = levelCompleteUI.transform.GetChild(2).GetChild(0);
-        levComColours.Add(nextLevText);
-        levComAlphas.Add(nltTargetAlpha);
-
-        repLevButton = levelCompleteUI.transform.GetChild(3);
-        levComColours.Add(repLevButton);
-        levComAlphas.Add(nlbTargetAlpha);
-
-        repLevText = levelCompleteUI.transform.GetChild(3).GetChild(0);
-        levComColours.Add(repLevText);
-        levComAlphas.Add(nltTargetAlpha);
-
-        for (int i = 0; i < levComColours.Count; i++)
+        if (levelCompleteUI != false)
         {
-            SetAlphaToZero(levComColours[i]);
+            levComPanel = levelCompleteUI.transform.GetChild(0);
+            levComColours.Add(levComPanel);
+            levComAlphas.Add(lcpTargetAlpha);
+
+            levComText = levelCompleteUI.transform.GetChild(1);
+            levComColours.Add(levComText);
+            levComAlphas.Add(lctTargetAlpha);
+
+            nextLevButton = levelCompleteUI.transform.GetChild(2);
+            levComColours.Add(nextLevButton);
+            levComAlphas.Add(nlbTargetAlpha);
+
+            nextLevText = levelCompleteUI.transform.GetChild(2).GetChild(0);
+            levComColours.Add(nextLevText);
+            levComAlphas.Add(nltTargetAlpha);
+
+            repLevButton = levelCompleteUI.transform.GetChild(3);
+            levComColours.Add(repLevButton);
+            levComAlphas.Add(nlbTargetAlpha);
+
+            repLevText = levelCompleteUI.transform.GetChild(3).GetChild(0);
+            levComColours.Add(repLevText);
+            levComAlphas.Add(nltTargetAlpha);
+
+            for (int i = 0; i < levComColours.Count; i++)
+            {
+                SetAlphaToZero(levComColours[i]);
+            }
         }
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
@@ -93,38 +99,51 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerManager.nextSwapAllowed > Time.time && !swapCooldownUI.activeInHierarchy && !noSwapping)
+        if (PlayerManager.nextSwapAllowed > Time.time && !noSwapping)
         {
-            cooldown = PlayerManager.nextSwapAllowed - Time.time;
-            cooldownTimer = cooldown;
-            swapCooldownUI.SetActive(true);
+            if (swapCooldownUI != null && !swapCooldownUI.activeInHierarchy)
+            {
+                return;
+            }
+            else
+            {
+                cooldown = PlayerManager.nextSwapAllowed - Time.time;
+                if (swapCooldownUI != null)
+                {
+                    cooldownTimer = cooldown;
+                    swapCooldownUI.SetActive(true);
+                }
+            }
         }
 
-        if (swapCooldownUI.activeInHierarchy)
+        if (swapCooldownUI != null)
         {
-            cooldownImage.fillAmount = (cooldownTimer -= Time.deltaTime) / cooldown;
-        }
+            if (swapCooldownUI.activeInHierarchy)
+            {
+                cooldownImage.fillAmount = (cooldownTimer -= Time.deltaTime) / cooldown;
+            }
 
-        if (PlayerManager.nextSwapAllowed <= Time.time && swapCooldownUI.activeInHierarchy)
-        {
-            swapCooldownUI.SetActive(false);
-            cooldownImage.fillAmount = 1f;
+            if (PlayerManager.nextSwapAllowed <= Time.time && swapCooldownUI.activeInHierarchy)
+            {
+                swapCooldownUI.SetActive(false);
+                cooldownImage.fillAmount = 1f;
+            }
         }
 
         // Return key shortcuts
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if (replayUI.activeInHierarchy)
+            if (replayUI != null && replayUI.activeInHierarchy)
             {
                 EnableLevelCompleteUI();
             }
-            else if (levelCompleteUI.activeInHierarchy || onMainMenu)
+            else if (levelCompleteUI != null && levelCompleteUI.activeInHierarchy || onMainMenu)
             {
                 LoadNextLevel();
             }
         }
 
-        if (levelCompleteUI.activeInHierarchy)
+        if ( levelCompleteUI != null && levelCompleteUI.activeInHierarchy)
         {
             for (int i = 0; i < levComColours.Count; i++)
             {
