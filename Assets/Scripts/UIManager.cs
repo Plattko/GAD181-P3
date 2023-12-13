@@ -224,7 +224,7 @@ public class UIManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        if (!finalLevel && nextSceneName != null)
+        if (!finalLevel)
         {
             SceneManager.LoadScene(nextSceneName);
         }
@@ -232,6 +232,7 @@ public class UIManager : MonoBehaviour
         {
             levelCompleteUI.SetActive(false);
             playtestCompleteUI.SetActive(true);
+            finalLevel = false;
         }
     }
 
