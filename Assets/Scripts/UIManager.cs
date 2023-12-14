@@ -226,6 +226,16 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void OpenMainMenuPanel(GameObject panel)
+    {
+        panel.SetActive(true);
+    }
+
+    public void CloseMainMenuPanel(GameObject panel)
+    {
+        panel.SetActive(false);
+    }
+
     public void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
