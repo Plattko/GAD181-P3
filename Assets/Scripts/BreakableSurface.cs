@@ -59,6 +59,11 @@ public class BreakableSurface : MonoBehaviour
             Debug.Log("Player 1 and surface type are correct.");
             if (collision.GetComponent<PlayerController>().doubleJumpUsed)
             {
+                // Cancel momentum
+                Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
+                Vector2 direction = collision.transform.position.y < transform.position.y ? Vector2.down : Vector2.up;
+                rb.AddForce(direction * Mathf.Abs(rb.velocity.y), ForceMode2D.Impulse);
+                
                 //Destroy(this.gameObject);
                 sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0);
                 foreach (Collider2D col in GetComponents<Collider2D>())
@@ -74,6 +79,10 @@ public class BreakableSurface : MonoBehaviour
         {
             if (collision.GetComponent<PlayerController>().doubleJumpUsed)
             {
+                Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
+                Vector2 direction = collision.transform.position.x < transform.position.x ? Vector2.left : Vector2.right;
+                rb.AddForce(direction * Mathf.Abs(rb.velocity.x), ForceMode2D.Impulse);
+
                 //Destroy(this.gameObject);
                 sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0);
                 foreach (Collider2D col in GetComponents<Collider2D>())
