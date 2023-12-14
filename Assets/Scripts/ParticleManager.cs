@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ParticleManager : MonoBehaviour
 {
+    // Player transforms
     [SerializeField] private Transform p1Transform;
     [SerializeField] private Transform p2Transform;
     
+    // Swap particles
     [SerializeField] private ParticleSystem p1SwapParticles;
     [SerializeField] private ParticleSystem p2SwapParticles;
 
@@ -25,10 +27,10 @@ public class ParticleManager : MonoBehaviour
         
     }
 
-    public void PlayJumpParticles(ParticleSystem particles, Transform transform)
+    public void PlayJumpParticles(ParticleSystem particles, Vector2 position)
     {
         particles.Stop();
-        particles.transform.position = transform.position;
+        particles.transform.position = position;
         particles.Play();
     }
 

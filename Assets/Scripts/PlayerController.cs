@@ -44,6 +44,9 @@ public class PlayerController : MonoBehaviour
     public bool doubleJumpUsed { get; private set; } = false;
 
     // Wall-slide and wall-jump variables
+    [SerializeField] private ParticleSystem wallJumpLeftParticles;
+    [SerializeField] private ParticleSystem wallJumpRightParticles;
+
     private float wallSlideSpeed = Mathf.PI;
     private bool isWallSliding = false;
     
@@ -259,7 +262,7 @@ public class PlayerController : MonoBehaviour
         // Jump particles
         if (lastGroundCollider.gameObject.layer == groundLayer)
         {
-            particleManager.GetComponent<ParticleManager>().PlayJumpParticles(jumpParticles, groundCheck);
+            particleManager.GetComponent<ParticleManager>().PlayJumpParticles(jumpParticles, groundCheck.position);
         }
 
         rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
@@ -277,6 +280,15 @@ public class PlayerController : MonoBehaviour
 
         rb.velocity = new Vector2(rb.velocity.x, 0f);
         rb.AddForce(new Vector2(wallJumpVector.x * wallJumpDirection, wallJumpVector.y), ForceMode2D.Impulse);
+
+        if (wallJumpDirection > 0)
+        {
+            particleManager.GetComponent<ParticleManager>().PlayJumpParticles(wallJumpLeftParticles, new Vector2(groundCheck.position.x - 0.45f, groundCheck.position.y));
+        }
+        else if (wallJumpDirection < 0)
+        {
+            particleManager.GetComponent<ParticleManager>().PlayJumpParticles(wallJumpRightParticles, new Vector2(groundCheck.position.x + 0.45f, groundCheck.position.y));
+        }
     }
 
     private void DoubleJump()
