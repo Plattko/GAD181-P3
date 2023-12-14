@@ -50150,7 +50150,7 @@ MonoBehaviour:
   levelCompleteUI: {fileID: 370258303}
   nextSceneName: Main_Menu
   finalLevel: 1
-  playtestCompleteUI: {fileID: 1519321048}
+  gameCompleteUI: {fileID: 1519321048}
 --- !u!4 &1360131918
 Transform:
   m_ObjectHideFlags: 0
