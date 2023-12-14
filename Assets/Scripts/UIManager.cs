@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
 
     private float cooldown;
     private float cooldownTimer;
-    private bool noSwapping = true;
+    private bool noSwapping = false;
 
     // Replay UI variables
     public GameObject replayUI;
@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
     // Next level variables
     public string nextSceneName;
     public bool finalLevel = false;
-    public GameObject playtestCompleteUI;
+    public GameObject gameCompleteUI;
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +55,7 @@ public class UIManager : MonoBehaviour
 
         if (!finalLevel)
         {
-            playtestCompleteUI = null;
+            gameCompleteUI = null;
         }
 
         if (levelCompleteUI != false)
@@ -99,25 +99,15 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerManager.nextSwapAllowed > Time.time && !noSwapping)
-        {
-            if (swapCooldownUI != null && !swapCooldownUI.activeInHierarchy)
-            {
-                return;
-            }
-            else
-            {
-                cooldown = PlayerManager.nextSwapAllowed - Time.time;
-                if (swapCooldownUI != null)
-                {
-                    cooldownTimer = cooldown;
-                    swapCooldownUI.SetActive(true);
-                }
-            }
-        }
-
         if (swapCooldownUI != null)
         {
+            if (PlayerManager.nextSwapAllowed > Time.time && !swapCooldownUI.activeInHierarchy && !noSwapping)
+            {
+                cooldown = PlayerManager.nextSwapAllowed - Time.time;
+                cooldownTimer = cooldown;
+                swapCooldownUI.SetActive(true);
+            }
+
             if (swapCooldownUI.activeInHierarchy)
             {
                 cooldownImage.fillAmount = (cooldownTimer -= Time.deltaTime) / cooldown;
@@ -231,7 +221,7 @@ public class UIManager : MonoBehaviour
         else if (finalLevel)
         {
             levelCompleteUI.SetActive(false);
-            playtestCompleteUI.SetActive(true);
+            gameCompleteUI.SetActive(true);
             finalLevel = false;
         }
     }
