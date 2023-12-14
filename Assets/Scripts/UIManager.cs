@@ -29,12 +29,14 @@ public class UIManager : MonoBehaviour
     private Transform nextLevText;
     private Transform repLevButton;
     private Transform repLevText;
+    private Transform timeToCompleteText;
 
     private List<float> levComAlphas = new List<float>();
     private float lcpTargetAlpha = 0.39f;
     private float lctTargetAlpha = 1f;
     private float nlbTargetAlpha = 0.35f;
     private float nltTargetAlpha = 1f;
+    private float ttcTargetAlpha = 1f;
 
     private float fadeInDuration = 1f;
 
@@ -83,6 +85,10 @@ public class UIManager : MonoBehaviour
             repLevText = levelCompleteUI.transform.GetChild(3).GetChild(0);
             levComColours.Add(repLevText);
             levComAlphas.Add(nltTargetAlpha);
+
+            timeToCompleteText = levelCompleteUI.transform.GetChild(4);
+            levComColours.Add(timeToCompleteText);
+            levComAlphas.Add(ttcTargetAlpha);
 
             for (int i = 0; i < levComColours.Count; i++)
             {
