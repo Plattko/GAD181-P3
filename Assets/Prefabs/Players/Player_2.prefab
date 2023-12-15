@@ -248,10 +248,12 @@ MonoBehaviour:
   - {fileID: 0}
   jumpPower: 11.5
   coyoteTimeCounter: 0
+  wallJumpLeftParticles: {fileID: 0}
+  wallJumpRightParticles: {fileID: 0}
   wallJumpVector: {x: 14.5, y: 11.5}
   canSwap: 1
   playerType: 1
-  doubleJumpVector: {x: 14.5, y: 6.807338}
+  doubleJumpVector: {x: 15, y: 7.35}
   stretchCurve:
     serializedVersion: 2
     m_Curve:
